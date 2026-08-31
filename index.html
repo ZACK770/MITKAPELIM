@@ -274,6 +274,29 @@
       .top .wrap{flex-wrap:wrap;gap:8px}
     }
   </style>
+  <style id="planner-layout-polish">
+    #planner .section-head h2{font-size:clamp(42px,6vw,76px)}
+    #planner .planner-grid{grid-template-columns:minmax(220px,.42fr) minmax(0,1.58fr);align-items:stretch}
+    #planner .calc-box{padding:20px}
+    #planner .fields{grid-template-columns:1fr}
+    #planner .mode-row{margin:14px 0}
+    #planner .result{grid-template-columns:1.35fr 1.35fr .85fr .85fr;gap:6px;margin-top:12px}
+    #planner .result-card{padding:9px;min-width:0}
+    #planner .result-card small{font-size:11px;white-space:nowrap}
+    #planner .result-card strong{font-size:18px;white-space:nowrap}
+    #planner .result-card:has(#groups) strong,#planner .result-card:has(#seats) strong{font-size:clamp(28px,4vw,52px)}
+    #planner .result-card:has(#storage),#planner .result-card:has(#storageArea){opacity:.78}
+    #planner #groups,#planner #storageArea{display:block}
+    #planner #floor{min-width:0}
+    @media(max-width:800px){
+      #planner .planner-grid{grid-template-columns:1fr}
+      #planner .fields{grid-template-columns:1fr 1fr}
+      #planner .result{grid-template-columns:1.2fr 1.2fr 1fr 1fr}
+    }
+    @media(max-width:520px){
+      #planner .fields,#planner .result{grid-template-columns:1fr 1fr}
+    }
+  </style>
   <script>
     document.querySelectorAll('.project-card,.product,.tech-card,.card').forEach(card=>{
       if(card.dataset.cardLink)return;
@@ -302,6 +325,21 @@
         card.querySelector('img').alt=name;
         card.querySelector('figcaption').innerHTML='<small>'+meta+'</small><strong>'+name+'</strong><p>״'+quote+'״</p><em>'+author+'</em><a href="'+href+'">'+label+' · ראה עוד</a>';
       });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const setLabel=(id,text)=>{
+        const input=document.getElementById(id);
+        const label=input?.closest('label');
+        if(!label||!input)return;
+        [...label.childNodes].filter(node=>node.nodeType===Node.TEXT_NODE).forEach(node=>{node.textContent=''});
+        label.insertBefore(document.createTextNode(text),input);
+      };
+      setLabel('roomW','אורך במטרים');
+      setLabel('roomL','רוחב במטרים');
+      document.querySelector('#groups')?.closest('.result-card')?.style.removeProperty('display');
+      document.querySelector('#storageArea')?.closest('.result-card')?.style.removeProperty('display');
     });
   </script>
 </body>
