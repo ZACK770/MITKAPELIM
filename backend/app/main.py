@@ -3,6 +3,8 @@ import io
 import json
 import os
 import tempfile
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -15,6 +17,7 @@ from pydantic import BaseModel, Field
 DATA_FILE = Path(os.getenv('DATA_FILE', '/data/mitkapelim.json'))
 DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'מתקפלים123')
+MAKE_WEBHOOK_URL = os.getenv('MAKE_WEBHOOK_URL', '')
 
 app = FastAPI(title='Mitkapelim API')
 app.add_middleware(
@@ -68,6 +71,30 @@ def append_record(collection: str, record: dict) -> int:
     return len(items)
 
 
+def send_webhook(event_type: str, record: dict) -> None:
+    if not MAKE_WEBHOOK_URL:
+        return
+    payload = json.dumps(
+        {
+            'type': event_type,
+            'created_at': record['created_at'],
+            'source': record.get('source', 'אתר מתקפלים'),
+            'data': record,
+        },
+        ensure_ascii=False,
+    ).encode('utf-8')
+    request = urllib.request.Request(
+        MAKE_WEBHOOK_URL,
+        data=payload,
+        headers={'Content-Type': 'application/json'},
+        method='POST',
+    )
+    try:
+        urllib.request.urlopen(request, timeout=10).close()
+    except (OSError, urllib.error.URLError):
+        pass
+
+
 def require_admin(password: str | None, header_password: str | None) -> None:
     if (password or header_password) != ADMIN_PASSWORD:
         raise HTTPException(status_code=401, detail='Unauthorized')
@@ -89,13 +116,17 @@ def create_lead(lead: Lead) -> dict[str, int]:
         'source': lead.source,
         'created_at': now(),
     }
-    return {'id': append_record('leads', record)}
+    lead_id = append_record('leads', record)
+    send_webhook('lead', record)
+    return {'id': lead_id}
 
 
 @app.post('/api/analytics', status_code=201)
 def create_page_view(view: PageView) -> dict[str, int]:
     record = {'page': view.page, 'referrer': view.referrer, 'created_at': now()}
-    return {'id': append_record('views', record)}
+    view_id = append_record('views', record)
+    send_webhook('page_view', record)
+    return {'id': view_id}
 
 
 @app.get('/api/admin/summary')
