@@ -45,6 +45,7 @@
         <a class="button" id="download-leads">הורדת פניות לאקסל</a>
         <a class="button" id="download-analytics">הורדת אנליטיקס לאקסל</a>
         <button id="refresh">רענון נתונים</button>
+        <button id="clear">מחיקת כל הנתונים</button>
       </p>
       <h2>פניות</h2>
       <table>
@@ -104,6 +105,16 @@
 
     passwordInput.addEventListener('keydown',event=>{if(event.key==='Enter')document.querySelector('#login-button').click()});
     document.querySelector('#refresh').addEventListener('click',()=>load().catch(()=>{errorText.textContent='רענון נכשל.'}));
+
+    document.querySelector('#clear').addEventListener('click',async()=>{
+      if(!confirm('למחוק את כל הפניות והכניסות מהשרת?'))return;
+      try{
+        await window.mitkapelimApi.clear(passwordInput.value);
+        await load();
+      }catch(error){
+        errorText.textContent='המחיקה נכשלה.';
+      }
+    });
   </script>
 </body>
 </html>

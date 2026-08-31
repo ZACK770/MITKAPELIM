@@ -141,6 +141,13 @@ def summary(password: str | None = None, x_admin_password: str | None = Header(d
     return {'leads': leads, 'views': views, 'by_page': by_page}
 
 
+@app.delete('/api/admin/data')
+def clear_data(password: str | None = None, x_admin_password: str | None = Header(default=None)) -> dict[str, str]:
+    require_admin(password, x_admin_password)
+    write_data({'leads': [], 'views': []})
+    return {'status': 'cleared'}
+
+
 def csv_response(filename: str, headers: list[str], rows: list[list[str]]) -> StreamingResponse:
     output = io.StringIO()
     writer = csv.writer(output)

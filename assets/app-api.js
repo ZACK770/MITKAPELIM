@@ -40,6 +40,11 @@
       if (!response.ok) throw new Error('Unauthorized');
       return response.json();
     },
+    async clear(password) {
+      const response = await fetch(apiBase + '/api/admin/data?password=' + encodeURIComponent(password), { method: 'DELETE' });
+      if (!response.ok) throw new Error('Clear request failed');
+      return true;
+    },
     csv(path, password) {
       return apiBase + path + '?password=' + encodeURIComponent(password);
     }
