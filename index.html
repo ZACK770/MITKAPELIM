@@ -159,5 +159,13 @@
     const headerLogo=document.querySelector('.top .mark,.top .brand');
     if(headerLogo){headerLogo.innerHTML='מתקפלים<sup>®</sup>';headerLogo.href='#top'}
   </script>
+  <script>
+    const discardedExplanations=[
+      'המערכת בנויה סביב פעולות שחוזרות בכל מוסד: פתיחה, ישיבה, פינוי, שטיפה ואחסון.',
+      'אותה שפה הנדסית מתרחבת לשולחנות, מיטות ופתרונות נוספים.',
+      'מחשבון המחשה לגבאים ולמנהלי אולמות. הנתונים ניתנים להחלפה לאחר קבלת מפרטי המוצר הסופיים.'
+    ];
+    document.querySelectorAll('p').forEach(paragraph=>{if(discardedExplanations.some(text=>paragraph.textContent.includes(text)))paragraph.remove()});
+  </script>
 </body>
 </html>
