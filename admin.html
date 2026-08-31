@@ -1,5 +1,3 @@
-<script src="assets/app-api.js"></script>
-<script>document.addEventListener('DOMContentLoaded',()=>{const password=document.querySelector('#password'),loginButton=document.querySelector('#login-button'),dashboard=document.querySelector('#dashboard');loginButton?.addEventListener('click',async()=>{setTimeout(async()=>{if(!dashboard||dashboard.classList.contains('hidden')||!window.mitkapelimApi.enabled)return;try{const data=await window.mitkapelimApi.summary(password.value),rows=document.querySelector('#rows');rows.replaceChildren(...data.leads.map(lead=>{const row=document.createElement('tr');[lead.created_at,lead.name,lead.phone,lead.quantity,lead.project,lead.notes].forEach(value=>{const cell=document.createElement('td');cell.textContent=value||'';row.append(cell)});return row}));let panel=document.querySelector('#server-analytics');if(!panel){panel=document.createElement('section');panel.id='server-analytics';panel.className='analytics';dashboard.prepend(panel)}const pages=Object.entries(data.by_page).sort((a,b)=>b[1]-a[1]);panel.replaceChildren();const title=document.createElement('h2');title.textContent='אנליטיקס מהשרת';panel.append(title);const summary=document.createElement('p');summary.textContent=`סך כניסות: ${data.views.length} | דפים שנצפו: ${pages.length}`;panel.append(summary);const table=document.createElement('table');table.className='analytics-table';table.innerHTML='<thead><tr><th>דף</th><th>כניסות</th></tr></thead>';const body=document.createElement('tbody');pages.forEach(([page,count])=>{const row=document.createElement('tr');const pageCell=document.createElement('td');pageCell.textContent=page;const countCell=document.createElement('td');countCell.textContent=count;row.append(pageCell,countCell);body.append(row)});table.append(body);panel.append(table);const leadsLink=document.createElement('a');leadsLink.className='button';leadsLink.href=window.mitkapelimApi.csv('/api/admin/leads.csv',password.value);leadsLink.textContent='הורדת לידים מהשרת';leadsLink.download='pniyot-mitkapelim.csv';const analyticsLink=document.createElement('a');analyticsLink.className='button';analyticsLink.href=window.mitkapelimApi.csv('/api/admin/analytics.csv',password.value);analyticsLink.textContent='הורדת אנליטיקס מהשרת';analyticsLink.download='analytics-mitkapelim.csv';panel.append(leadsLink,analyticsLink)}catch(error){const status=document.querySelector('#error');if(status)status.textContent='לא ניתן להתחבר לשרת הנתונים.'}},0)})})</script>
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -7,24 +5,105 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ניהול פניות | מתקפלים</title>
   <style>
-    :root{--bg:#080808;--panel:#141414;--line:#303030;--gold:#e5c158;--text:#f8f6f1}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px Arial,sans-serif}.wrap{max-width:1000px;margin:auto;padding:40px 24px}h1{color:var(--gold)}button,input{font:inherit;padding:10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--text)}button{background:var(--gold);color:#17130a;font-weight:700;cursor:pointer;margin:6px 0}.hidden{display:none}.error{color:#f18b7b}.table{width:100%;border-collapse:collapse;margin-top:25px}.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:right}
+    :root{--bg:#080808;--panel:#141414;--line:#303030;--gold:#e5c158;--text:#f8f6f1}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px Arial,sans-serif}
+    .wrap{max-width:1050px;margin:auto;padding:40px 24px}
+    h1{color:var(--gold);letter-spacing:.04em}
+    h2{color:var(--gold);font-size:20px;margin:34px 0 12px}
+    a{color:var(--gold)}
+    button,input{font:inherit;padding:10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--text)}
+    button,.button{background:var(--gold);color:#17130a;font-weight:700;cursor:pointer;margin:6px 6px 6px 0;display:inline-block;padding:10px 16px;border-radius:6px;text-decoration:none;border:0}
+    .hidden{display:none}
+    .error{color:#f18b7b;min-height:22px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .card{background:var(--panel);border:1px solid var(--line);padding:16px}
+    .card strong{display:block;color:var(--gold);font-size:26px;margin-top:8px}
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    th,td{padding:10px;border-bottom:1px solid var(--line);text-align:right;font-size:15px}
+    @media(max-width:700px){.cards{grid-template-columns:1fr}}
   </style>
+  <script src="assets/app-api.js"></script>
 </head>
 <body>
-  <main class="wrap"><a href="index.html">חזרה לאתר</a><h1>ניהול פניות</h1><section id="login"><p>הזינו סיסמה כדי לצפות בפניות.</p><input id="password" type="password" autocomplete="current-password"><button id="login-button">כניסה</button><p class="error" id="error"></p></section><section id="dashboard" class="hidden"><button id="export">הורדת קובץ Excel</button><button id="clear">מחיקת כל הפניות</button><table class="table"><thead><tr><th>תאריך</th><th>שם</th><th>טלפון</th><th>כמות</th><th>פרויקט</th><th>הערות</th></tr></thead><tbody id="rows"></tbody></table></section></main>
+  <main class="wrap">
+    <a href="index.html">חזרה לאתר</a>
+    <h1>ניהול פניות ואנליטיקס</h1>
+    <section id="login">
+      <p>הזינו סיסמה כדי לצפות בנתונים השמורים בשרת.</p>
+      <input id="password" type="password" autocomplete="current-password">
+      <button id="login-button">כניסה</button>
+      <p class="error" id="error"></p>
+    </section>
+    <section id="dashboard" class="hidden">
+      <div class="cards">
+        <div class="card">סך פניות<strong id="stat-leads">0</strong></div>
+        <div class="card">סך כניסות<strong id="stat-views">0</strong></div>
+        <div class="card">דפים שנצפו<strong id="stat-pages">0</strong></div>
+      </div>
+      <p>
+        <a class="button" id="download-leads">הורדת פניות לאקסל</a>
+        <a class="button" id="download-analytics">הורדת אנליטיקס לאקסל</a>
+        <button id="refresh">רענון נתונים</button>
+      </p>
+      <h2>פניות</h2>
+      <table>
+        <thead><tr><th>תאריך</th><th>שם</th><th>טלפון</th><th>כמות</th><th>פרויקט</th><th>הערות</th><th>מקור</th></tr></thead>
+        <tbody id="leads-rows"></tbody>
+      </table>
+      <h2>כניסות לפי דף</h2>
+      <table>
+        <thead><tr><th>דף</th><th>כניסות</th></tr></thead>
+        <tbody id="pages-rows"></tbody>
+      </table>
+    </section>
+  </main>
   <script>
-    const password='מתקפלים123',login=document.querySelector('#login'),dashboard=document.querySelector('#dashboard'),rows=document.querySelector('#rows');
-    function leads(){return JSON.parse(localStorage.getItem('foldingLeads')||'[]')}
-    function render(){rows.replaceChildren(...leads().map(lead=>{const row=document.createElement('tr');[new Date(lead.createdAt).toLocaleString('he-IL'),lead.name,lead.phone,lead.quantity,lead.project,lead.notes].forEach(value=>{const cell=document.createElement('td');cell.textContent=value||'';row.append(cell)});return row}))}
-    document.querySelector('#login-button').addEventListener('click',()=>{if(document.querySelector('#password').value===password){login.classList.add('hidden');dashboard.classList.remove('hidden');render()}else document.querySelector('#error').textContent='הסיסמה אינה נכונה.'});
-    document.querySelector('#export').addEventListener('click',()=>{const header=['תאריך','שם','טלפון','כמות','פרויקט','הערות'],data=leads().map(lead=>[lead.createdAt,lead.name,lead.phone,lead.quantity,lead.project,lead.notes]),csv=[header,...data].map(row=>row.map(value=>`"${String(value||'').replaceAll('"','""')}"`).join(',')).join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='פניות-מתקפלים.csv';link.click();URL.revokeObjectURL(link.href)});
-    document.querySelector('#clear').addEventListener('click',()=>{if(confirm('למחוק את כל הפניות?')){localStorage.removeItem('foldingLeads');render()}});
-  </script>
-  <style>
-    .analytics{margin-top:30px;border-top:1px solid var(--line);padding-top:24px}.analytics-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.analytics-card{background:var(--panel);border:1px solid var(--line);padding:16px}.analytics-card strong{display:block;color:var(--gold);font-size:28px;margin-top:8px}.analytics-table{width:100%;border-collapse:collapse;margin-top:18px}.analytics-table td,.analytics-table th{border-bottom:1px solid var(--line);padding:9px;text-align:right}@media(max-width:700px){.analytics-cards{grid-template-columns:1fr}}
-  </style>
-  <script>
-    document.querySelector('#login-button').addEventListener('click',()=>setTimeout(()=>{if(dashboard.classList.contains('hidden'))return;const visits=JSON.parse(localStorage.getItem('foldingAnalytics')||'[]'),byPage=visits.reduce((result,visit)=>(result[visit.page]=(result[visit.page]||0)+1,result),{}),panel=document.createElement('section');panel.className='analytics';panel.innerHTML='<h2>מעקב כניסות ואנליטיקס</h2><div class="analytics-cards"><div class="analytics-card">סה״כ כניסות<strong>'+visits.length+'</strong></div><div class="analytics-card">דפים שנצפו<strong>'+Object.keys(byPage).length+'</strong></div><div class="analytics-card">כניסה אחרונה<strong>'+(visits.length?new Date(visits[visits.length-1].at).toLocaleString('he-IL'):'אין נתונים')+'</strong></div></div><table class="analytics-table"><thead><tr><th>דף</th><th>כניסות</th></tr></thead><tbody>'+Object.entries(byPage).sort((a,b)=>b[1]-a[1]).map(([page,count])=>'<tr><td>'+page+'</td><td>'+count+'</td></tr>').join('')+'</tbody></table><button id="export-analytics">הורדת נתוני אנליטיקס</button>';dashboard.prepend(panel);document.querySelector('#export-analytics').addEventListener('click',()=>{const csv=[['דף','זמן','מקור'],...visits.map(visit=>[visit.page,visit.at,visit.referrer])].map(row=>row.map(value=>`"${String(value).replaceAll('"','""')}"`).join(',')).join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='אנליטיקס-מתקפלים.csv';link.click();URL.revokeObjectURL(link.href)})},0));
+    const passwordInput=document.querySelector('#password');
+    const errorText=document.querySelector('#error');
+    const login=document.querySelector('#login');
+    const dashboard=document.querySelector('#dashboard');
+
+    function formatDate(value){
+      const date=new Date(value);
+      return Number.isNaN(date.getTime())?String(value||''):date.toLocaleString('he-IL');
+    }
+
+    function fillRow(values){
+      const row=document.createElement('tr');
+      values.forEach(value=>{const cell=document.createElement('td');cell.textContent=value??'';row.append(cell)});
+      return row;
+    }
+
+    async function load(){
+      const password=passwordInput.value;
+      const data=await window.mitkapelimApi.summary(password);
+      const pages=Object.entries(data.by_page).sort((first,second)=>second[1]-first[1]);
+      document.querySelector('#stat-leads').textContent=data.leads.length;
+      document.querySelector('#stat-views').textContent=data.views.length;
+      document.querySelector('#stat-pages').textContent=pages.length;
+      document.querySelector('#leads-rows').replaceChildren(...data.leads.map(lead=>fillRow([
+        formatDate(lead.created_at),lead.name,lead.phone,lead.quantity,lead.project,lead.notes,lead.source
+      ])));
+      document.querySelector('#pages-rows').replaceChildren(...pages.map(([page,count])=>fillRow([page,count])));
+      document.querySelector('#download-leads').href=window.mitkapelimApi.csv('/api/admin/leads.csv',password);
+      document.querySelector('#download-analytics').href=window.mitkapelimApi.csv('/api/admin/analytics.csv',password);
+    }
+
+    document.querySelector('#login-button').addEventListener('click',async()=>{
+      errorText.textContent='טוען נתונים מהשרת…';
+      try{
+        await load();
+        login.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+        errorText.textContent='';
+      }catch(error){
+        errorText.textContent='הסיסמה אינה נכונה או שאין חיבור לשרת.';
+      }
+    });
+
+    passwordInput.addEventListener('keydown',event=>{if(event.key==='Enter')document.querySelector('#login-button').click()});
+    document.querySelector('#refresh').addEventListener('click',()=>load().catch(()=>{errorText.textContent='רענון נכשל.'}));
   </script>
 </body>
 </html>
