@@ -255,5 +255,8 @@
     }
     document.querySelectorAll('.product').forEach((card,index)=>card.addEventListener('click',event=>{if(event.target.closest('a'))return;window.location.href=['products/spekal.html','products/table.html','products/beds.html'][index]}));
   </script>
+  <script>
+    (()=>{const key='foldingAnalytics',visits=JSON.parse(localStorage.getItem(key)||'[]');visits.push({page:'דף הבית',at:new Date().toISOString(),referrer:document.referrer||'ישירה'});localStorage.setItem(key,JSON.stringify(visits.slice(-1000)))})();
+  </script>
 </body>
 </html>
