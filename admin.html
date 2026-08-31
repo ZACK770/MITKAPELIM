@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
   <title>ניהול פניות | מתקפלים</title>
   <style>
     :root{--bg:#080808;--panel:#141414;--line:#303030;--gold:#e5c158;--text:#f8f6f1}
@@ -20,6 +21,7 @@
     .card{background:var(--panel);border:1px solid var(--line);padding:16px}
     .card strong{display:block;color:var(--gold);font-size:26px;margin-top:8px}
     table{width:100%;border-collapse:collapse;margin-top:14px}
+    .table-scroll{overflow-x:auto}
     th,td{padding:10px;border-bottom:1px solid var(--line);text-align:right;font-size:15px}
     @media(max-width:700px){.cards{grid-template-columns:1fr}}
   </style>
@@ -48,15 +50,15 @@
         <button id="clear">מחיקת כל הנתונים</button>
       </p>
       <h2>פניות</h2>
-      <table>
+      <div class="table-scroll"><table>
         <thead><tr><th>תאריך</th><th>שם</th><th>טלפון</th><th>כמות</th><th>פרויקט</th><th>הערות</th><th>מקור</th></tr></thead>
         <tbody id="leads-rows"></tbody>
-      </table>
+      </table></div>
       <h2>כניסות לפי דף</h2>
-      <table>
+      <div class="table-scroll"><table>
         <thead><tr><th>דף</th><th>כניסות</th></tr></thead>
         <tbody id="pages-rows"></tbody>
-      </table>
+      </table></div>
     </section>
   </main>
   <script>
