@@ -1,15 +1,27 @@
 (function () {
-  const apiBase = window.MITKAPELIM_API_URL || 'https://mitkapelim-api.onrender.com';
+  const apiBases = [...new Set([
+    window.MITKAPELIM_API_URL,
+    window.location.origin,
+    'https://mitkapelim-api.onrender.com'
+  ].filter(Boolean))];
   const webhookUrl = 'https://hook.eu2.make.com/j5f2rhugimacqf60yvo7iv6bmvnjea1i';
 
   async function post(path, payload) {
-    const response = await fetch(apiBase + path, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!response.ok) throw new Error('API request failed');
-    return response.json();
+    let lastError;
+    for (const base of apiBases) {
+      try {
+        const response = await fetch(base + path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error('API request failed');
+        return response.json();
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError || new Error('API request failed');
   }
 
   async function sendWebhook(type, data) {
@@ -23,7 +35,7 @@
   }
 
   window.mitkapelimApi = {
-    enabled: Boolean(apiBase),
+    enabled: apiBases.length > 0,
     async send(path, payload) {
       try {
         await post(path, payload);
@@ -36,17 +48,17 @@
       return this.send('/api/analytics', payload);
     },
     async summary(password) {
-      const response = await fetch(apiBase + '/api/admin/summary?password=' + encodeURIComponent(password));
+      const response = await fetch(apiBases[0] + '/api/admin/summary?password=' + encodeURIComponent(password));
       if (!response.ok) throw new Error('Unauthorized');
       return response.json();
     },
     async clear(password) {
-      const response = await fetch(apiBase + '/api/admin/data?password=' + encodeURIComponent(password), { method: 'DELETE' });
+      const response = await fetch(apiBases[0] + '/api/admin/data?password=' + encodeURIComponent(password), { method: 'DELETE' });
       if (!response.ok) throw new Error('Clear request failed');
       return true;
     },
     csv(path, password) {
-      return apiBase + path + '?password=' + encodeURIComponent(password);
+      return apiBases[0] + path + '?password=' + encodeURIComponent(password);
     }
   };
 })();
