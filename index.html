@@ -1,12 +1,12 @@
-﻿<script src="assets/app-api.js"></script>
-<script>document.addEventListener('DOMContentLoaded',()=>{const form=document.querySelector('#quote-form');if(!form||form.querySelector('#server-submit'))return;const button=document.createElement('button');button.className='button';button.id='server-submit';button.type='button';button.textContent='×©×œ×— ×˜×•×¤×¡';form.querySelector('.full').prepend(button);button.addEventListener('click',async()=>{const data=new FormData(form);const payload={name:String(data.get('name')||'').trim(),phone:String(data.get('phone')||'').trim(),quantity:String(data.get('benchQuantity')||'').trim(),project:String(data.get('project')||''),notes:String(data.get('notes')||''),source:'×“×£ ×”×‘×™×ª'};if(!payload.name||!payload.phone||!payload.quantity)return;button.disabled=true;try{if(!window.mitkapelimApi.enabled)throw new Error('API is not configured');await window.mitkapelimApi.send('/api/leads',payload);document.querySelector('#form-status').textContent='×”×˜×•×¤×¡ × ×©×œ×— ×‘×”×¦×œ×—×”.';form.reset()}catch(error){document.querySelector('#form-status').textContent='×œ× × ×™×ª×Ÿ ×œ×©×œ×•×— ×›×¨×’×¢. × ×¡×• ×©×•×‘ ××• ×©×œ×—×• ×‘×•×•××˜×¡××¤.'}finally{button.disabled=false}})})</script>
-<script>document.addEventListener('DOMContentLoaded',()=>{const menu=document.querySelector('.menu');if(menu&&!menu.querySelector('a[href="#planner"]')){const link=document.createElement('a');link.href='#planner';link.textContent='×ž×—×©×‘×•×Ÿ ×’×‘××™×';menu.insertBefore(link,menu.firstElementChild)}})</script>
+<script src="assets/app-api.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const form=document.querySelector('#quote-form');if(!form||form.querySelector('#server-submit'))return;const button=document.createElement('button');button.className='button';button.id='server-submit';button.type='button';button.textContent='שלח טופס';form.querySelector('.full').prepend(button);button.addEventListener('click',async()=>{const data=new FormData(form);const payload={name:String(data.get('name')||'').trim(),phone:String(data.get('phone')||'').trim(),quantity:String(data.get('benchQuantity')||'').trim(),project:String(data.get('project')||''),notes:String(data.get('notes')||''),source:'דף הבית'};if(!payload.name||!payload.phone||!payload.quantity)return;button.disabled=true;try{if(!window.mitkapelimApi.enabled)throw new Error('API is not configured');await window.mitkapelimApi.send('/api/leads',payload);document.querySelector('#form-status').textContent='הטופס נשלח בהצלחה.';form.reset()}catch(error){document.querySelector('#form-status').textContent='לא ניתן לשלוח כרגע. נסו שוב או שלחו בוואטסאפ.'}finally{button.disabled=false}})})</script>
+<script>document.addEventListener('DOMContentLoaded',()=>{const menu=document.querySelector('.menu');if(menu&&!menu.querySelector('a[href="#planner"]')){const link=document.createElement('a');link.href='#planner';link.textContent='מחשבון גבאים';menu.insertBefore(link,menu.firstElementChild)}})</script>
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>×¡×¤×§×œÂ® / ×ž×ª×§×¤×œ×™× â€” Industrial Minimal</title>
+  <title>ספקל® / מתקפלים — Industrial Minimal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
@@ -20,32 +20,32 @@
   </style>
 </head>
 <body>
-  <header class="top"><div class="wrap"><a class="mark" href="#top">×ž×ª×§×¤×œ×™×<i>Â®</i></a><nav class="menu"><a href="#product">×”×ž×•×¦×¨</a><a href="#system">×”×ž×¢×¨×›×ª</a><a href="#products">×ž×•×¦×¨×™×</a></nav><span class="code">SYSTEM / <b>01</b></span></div></header>
+  <header class="top"><div class="wrap"><a class="mark" href="#top">מתקפלים<i>®</i></a><nav class="menu"><a href="#product">המוצר</a><a href="#system">המערכת</a><a href="#products">מוצרים</a></nav><span class="code">SYSTEM / <b>01</b></span></div></header>
   <main id="top">
-    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="label">FOLDING SYSTEMS / PRODUCT 01</div><h1>×¡×¤×§×œ<span>×¤×©×•×˜. ×§×œ.</span></h1><p class="lead">×¡×¤×¡×œ ×ž×ª×§×¤×œ ×œ×ž×•×¡×“×•×ª, ×‘×ª×™ ×›× ×¡×ª ×•××•×œ×ž×•×ª. ×”× ×“×¡×ª ××œ×•×ž×™× ×™×•× ×ž×“×•×™×§×ª ×©×ž××¤×©×¨×ª ×œ×”×§×™×, ×œ×¤× ×•×ª ×•×œ××—×¡×Ÿ â€” ×‘×œ×™ ×œ×‘×–×‘×– ×›×•×— ×•×©×˜×—.</p><div class="actions"><a class="button" href="#product">×œ× ×ª×•× ×™ ×”×ž×•×¦×¨</a><a class="button alt" href="#contact">×“×‘×¨×• ××™×ª× ×•</a></div></div><div class="hero-model"><div class="model-tag"><strong>INTERACTIVE MODEL</strong>×’×¨×¨×• ×œ×¡×™×‘×•×‘ / ×œ×œ× ×–×•×</div><div class="cross"></div><canvas id="model"></canvas></div></div></section>
-    <section id="product" class="section"><div class="wrap"><div class="section-head"><div><div class="label">01 / CORE METRICS</div><h2>× ×ª×•×Ÿ ××—×“.<br><span style="color:var(--steel)">×”×‘×“×œ ×’×“×•×œ.</span></h2></div><p>×‘×ž×§×•× ×œ×”×¦×™×£ ××ª ×”×ž×©×ª×ž×© ×‘×˜×§×¡×˜, ×× ×—× ×• × ×•×ª× ×™× ×œ×ž×•×¦×¨ ×œ×“×‘×¨ ×“×¨×š × ×ª×•× ×™×, ×—×•×ž×¨, ×ª× ×•×¢×” ×•×”×“×’×ž×”.</p></div><div class="spec-grid"><div class="spec"><small>WEIGHT / ×ž×©×§×œ ×¢×¦×ž×™</small><strong>5.6</strong><span>×§×´×’ ×‘×œ×‘×“</span></div><div class="spec"><small>FOLDED / ×¢×•×‘×™ ×‘×§×™×¤×•×œ</small><strong>4</strong><span>×¡×´×ž ×‘×œ×‘×“</span></div><div class="spec"><small>LOCK / ×ž× ×’× ×•×Ÿ × ×¢×™×œ×”</small><strong>01</strong><span>×§×œ×™×§. × ×¢×•×œ.</span></div></div></div></section>
-    <section id="system" class="section"><div class="wrap"><div class="section-head"><div><div class="label">02 / ENGINEERED FOR REAL LIFE</div><h2>× ×¨××” ×¤×©×•×˜.<br><span style="color:var(--steel)">×¢×•×‘×“ ×—×›×.</span></h2></div><p>×”×ž×¢×¨×›×ª ×‘× ×•×™×” ×¡×‘×™×‘ ×¤×¢×•×œ×•×ª ×©×—×•×–×¨×•×ª ×‘×›×œ ×ž×•×¡×“: ×¤×ª×™×—×”, ×™×©×™×‘×”, ×¤×™× ×•×™, ×©×˜×™×¤×” ×•××—×¡×•×Ÿ.</p></div><div class="tech-grid"><article class="tech-card"><div class="num">A / MATERIAL</div><h3>××œ×•×ž×™× ×™×•× ×× ×•×“×™×™×–</h3><p>×©×œ×“×” ×§×œ×ª ×ž×©×§×œ ×¢× ×’×™×ž×•×¨ × ×§×™ ×•×¢×ž×™×“×•×ª ×œ×©×™×ž×•×© ××™× ×˜× ×¡×™×‘×™. ×¤×¨×–×•×œ, ×¦×™×¨×™× ×•×‘×¨×’×™× ×ž× ×™×¨×•×¡×˜×”.</p></article><article class="tech-card"><div class="num">B / LOCK</div><h3>×§×œ×™×§ â€” ×•×–×” × ×¢×•×œ</h3><p>×¨×’×œ×™×™× ×©× ×¤×ª×—×•×ª ×‘×ª× ×•×¢×” ××—×ª ×•× × ×¢×œ×•×ª ×‘××•×¤×Ÿ ×‘×¨×•×¨. ×œ×—×™×¦×” ×¢×œ ×¤×™×Ÿ ×”×©×—×¨×•×¨ ×ž×§×¤×œ×ª ××ª ×”×¡×¤×¡×œ.</p></article><article class="tech-card"><div class="num">C / STACK</div><h3>× ×›× ×¡ ×œ×¢×¨×™×ž×”</h3><p>×”×¡×¤×¡×œ×™× ×ž×©×ª×œ×‘×™× ×–×” ×‘×–×” ×‘×¢×¨×™×ž×” ×™×¦×™×‘×”. ×¤×—×•×ª × ×¤×— ×‘×ž×—×¡×Ÿ, ×™×•×ª×¨ ×’×ž×™×©×•×ª ×‘××•×œ×.</p></article><article class="tech-card"><div class="num">D / MADE HERE</div><h3>×ž×ª×•×›× ×Ÿ ×œ×©×˜×—</h3><p>×¤×™×ª×•×— ×•×™×™×¦×•×¨ ×©×œ ×ž×ª×§×¤×œ×™×, ×¢× ×—×©×™×‘×” ×”× ×“×¡×™×ª ×©×ž×ª×—×™×œ×” ×ž×”×©×™×ž×•×© ×”××ž×™×ª×™ ×©×œ ×ž×•×¡×“×•×ª.</p></article></div></div></section>
-    <section id="products" class="section"><div class="wrap"><div class="section-head"><div><div class="label">03 / THE SYSTEM</div><h2>×ž×•×¦×¨ ××—×“<br><span style="color:var(--steel)">×ž×ª×•×š ×ž×¢×¨×›×ª.</span></h2></div><p>××•×ª×” ×©×¤×” ×”× ×“×¡×™×ª ×ž×ª×¨×—×‘×ª ×œ×©×•×œ×—× ×•×ª, ×ž×™×˜×•×ª ×•×¤×ª×¨×•× ×•×ª × ×•×¡×¤×™×.</p></div><div class="products"><article class="product"><div class="product-art"></div><div><h3>×¡×¤×§×œÂ®</h3><p>×¡×¤×¡×œ ×ž×ª×§×¤×œ. 5.6 ×§×´×’ / 4 ×¡×´×ž ×‘×§×™×¤×•×œ.</p></div><a href="#product">VIEW PRODUCT â†’</a></article><article class="product"><div class="product-art table"></div><div><h3>×§×¤×œ×•×˜×©</h3><p>×©×•×œ×—×Ÿ ×ž×ª×§×¤×œ ×œ×ž×•×¡×“×•×ª ×•×œ××™×¨×•×¢×™×.</p></div><a href="#contact">REQUEST SPECS â†’</a></article><article class="product"><div class="product-art bed"></div><div><h3>×ž×™×˜×•×ª</h3><p>×¤×ª×¨×•×Ÿ ×œ×™× ×” ×ž×ª×§×¤×œ ×œ×ž×‘× ×™× ×¨×‘Ö¾×©×™×ž×•×©×™×™×.</p></div><a href="#contact">REQUEST SPECS â†’</a></article></div></div></section>
-    <section id="contact" class="contact"><div class="wrap contact-row"><div><div class="label" style="color:#11150d">NEXT STEP / 04</div><h2>×‘×•××• × ×ž×“×•×“<br>××ª ×”××¤×©×¨×•×™×•×ª.</h2></div><div><p>×©×œ×—×• ×œ× ×• ××ª ×ž×™×“×•×ª ×”×—×œ×œ ×•×”×›×ž×•×ª ×”×¨×¦×•×™×”. × ×—×–×•×¨ ×¢× ×¤×ª×¨×•×Ÿ ×©×ž×ª××™× ×œ×©×˜×—, ×œ×©×™×ž×•×© ×•×œ×ž×—×¡×Ÿ.</p><div class="actions"><a class="button" href="https://wa.me/972500000000">WHATSAPP â†—</a><a class="button" href="tel:+972500000000">050-000-0000</a></div></div></div></section>
-    <section id="planner" class="section"><div class="wrap"><div class="section-head"><div><div class="label">04 / SPACE PLANNER</div><h2>×›×ž×” × ×›× ×¡<br><span style="color:var(--steel)">×‘×—×œ×œ ×©×œ×›×?</span></h2></div><p>×ž×—×©×‘×•×Ÿ ×”×ž×—×©×” ×œ×’×‘××™× ×•×œ×ž× ×”×œ×™ ××•×œ×ž×•×ª. ×”× ×ª×•× ×™× × ×™×ª× ×™× ×œ×”×—×œ×¤×” ×œ××—×¨ ×§×‘×œ×ª ×ž×¤×¨×˜×™ ×”×ž×•×¦×¨ ×”×¡×•×¤×™×™×.</p></div><div class="planner-grid"><div class="calc-box"><div class="fields"><label>×¨×•×—×‘ ×‘×ž×˜×¨×™×<input id="roomW" type="number" min="2" value="4"></label><label>××•×¨×š ×‘×ž×˜×¨×™×<input id="roomL" type="number" min="2" value="8"></label></div><div class="mode-row"><button class="mode active" data-mode="comfortable" type="button">× ×•×—</button><button class="mode" data-mode="dense" type="button">×¦×¤×•×£</button></div><div class="result"><div class="result-card"><small>×§×‘×•×¦×•×ª</small><strong id="groups">â€”</strong></div><div class="result-card"><small>×ž×§×•×ž×•×ª</small><strong id="seats">â€”</strong></div><div class="result-card"><small>×¡×¤×¡×œ×™× ×‘××—×¡×•×Ÿ</small><strong id="storage">â€”</strong></div><div class="result-card"><small>×©×˜×— ××—×¡×•×Ÿ</small><strong id="storageArea">â€”</strong></div></div></div><div class="floor" id="floor"></div></div></div></section>
-    <section id="quote" class="section"><div class="wrap"><div class="section-head"><div><div class="label">05 / QUOTE</div><h2>×‘×•××• × ×‘× ×”<br><span style="color:var(--steel)">××ª ×”×¤×ª×¨×•×Ÿ.</span></h2></div><p>×©×œ×—×• ×¤×¨×˜×™× ×•×›×ž×•×ª ×¡×¤×¡×œ×™× ×ž×©×•×¢×¨×ª. ×”×¤× ×™×™×” ×ª×™×¤×ª×— ×‘Ö¾WhatsApp.</p></div><form class="quote-form" id="quote-form"><label>×©× ×ž×œ× *<input name="name" required></label><label>×˜×œ×¤×•×Ÿ *<input name="phone" type="tel" required></label><label>×›×ž×•×ª ×¡×¤×¡×œ×™× *<input name="benchQuantity" type="number" min="1" required></label><label>×¡×•×’ ×¤×¨×•×™×§×˜<select name="project"><option>×‘×™×ª ×›× ×¡×ª</option><option>××•×œ×</option><option>×ž×•×¡×“</option><option>×¨×©×•×ª / ××¨×’×•×Ÿ</option></select></label><label class="full">×”×¢×¨×•×ª<textarea name="notes"></textarea></label><div class="full"><button class="button" type="submit">×©×œ×™×—×” ×‘Ö¾WhatsApp</button><p class="form-note">×”×›×ž×•×ª ×”×™× ×©×“×” ×—×•×‘×”.</p><p class="form-status" id="form-status"></p></div></form></div></section>
-    <section id="product-detail" class="section" hidden><div class="wrap"><a href="#products" class="code">â† ×—×–×¨×” ×œ×ž×•×¦×¨×™×</a><div class="section-head"><div><div class="label" id="detail-code">PRODUCT</div><h2 id="detail-title">×¡×¤×§×œÂ®</h2></div><p id="detail-copy"></p></div><div class="detail-points" id="detail-points"></div><a class="button" href="#quote">×‘×§×©×• ×”×¦×¢×ª ×ž×—×™×¨</a></div></section>
-    <section id="spekal-gallery" class="section" hidden><div class="wrap"><div class="section-head"><div><div class="label">SPEKAL / PRODUCT GALLERY</div><h2>×¡×¤×§×œÂ®<br><span style="color:var(--steel)">×ž×§×¨×•×‘.</span></h2></div><p>×ª×ž×•× ×•×ª ×ž×•×¦×¨ ×©×¡×•×¤×§×• ×¢×œ ×™×“×™ ×ž×ª×§×¤×œ×™×.</p></div><div class="products"><figure class="product"><img src="assets/spekal/spekal-01.png" alt="×¡×¤×§×œ ×¤×ª×•×—" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>×¡×¤×§×œ ×¤×ª×•×—</figcaption></figure><figure class="product"><img src="assets/spekal/spekal-02.png" alt="×¡×¤×§×œ ×‘×ž×‘×˜ ×§×“×ž×™" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>×ž×‘×˜ ×§×“×ž×™</figcaption></figure><figure class="product"><img src="assets/spekal/spekal-03.png" alt="×ž× ×’× ×•×Ÿ ×”×¡×¤×§×œ" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>×ž× ×’× ×•×Ÿ ×•×—×™×‘×•×¨×™ ×”×¨×’×œ×™×™×</figcaption></figure><figure class="product"><img src="assets/spekal/spekal-04.png" alt="×¡×¤×§×œ ×‘×ž×‘×˜ ×ª×—×ª×•×Ÿ" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>×ž×‘×˜ ×ª×—×ª×•×Ÿ</figcaption></figure></div></div></section>
+    <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="label">FOLDING SYSTEMS / PRODUCT 01</div><h1>ספקל<span>פשוט. קל.</span></h1><p class="lead">ספסל מתקפל למוסדות, בתי כנסת ואולמות. הנדסת אלומיניום מדויקת שמאפשרת להקים, לפנות ולאחסן — בלי לבזבז כוח ושטח.</p><div class="actions"><a class="button" href="#product">לנתוני המוצר</a><a class="button alt" href="#contact">דברו איתנו</a></div></div><div class="hero-model"><div class="model-tag"><strong>INTERACTIVE MODEL</strong>גררו לסיבוב / ללא זום</div><div class="cross"></div><canvas id="model"></canvas></div></div></section>
+    <section id="product" class="section"><div class="wrap"><div class="section-head"><div><div class="label">01 / CORE METRICS</div><h2>נתון אחד.<br><span style="color:var(--steel)">הבדל גדול.</span></h2></div><p>במקום להציף את המשתמש בטקסט, אנחנו נותנים למוצר לדבר דרך נתונים, חומר, תנועה והדגמה.</p></div><div class="spec-grid"><div class="spec"><small>WEIGHT / משקל עצמי</small><strong>5.6</strong><span>ק״ג בלבד</span></div><div class="spec"><small>FOLDED / עובי בקיפול</small><strong>4</strong><span>ס״מ בלבד</span></div><div class="spec"><small>LOCK / מנגנון נעילה</small><strong>01</strong><span>קליק. נעול.</span></div></div></div></section>
+    <section id="system" class="section"><div class="wrap"><div class="section-head"><div><div class="label">02 / ENGINEERED FOR REAL LIFE</div><h2>נראה פשוט.<br><span style="color:var(--steel)">עובד חכם.</span></h2></div><p>המערכת בנויה סביב פעולות שחוזרות בכל מוסד: פתיחה, ישיבה, פינוי, שטיפה ואחסון.</p></div><div class="tech-grid"><article class="tech-card"><div class="num">A / MATERIAL</div><h3>אלומיניום אנודייז</h3><p>שלדה קלת משקל עם גימור נקי ועמידות לשימוש אינטנסיבי. פרזול, צירים וברגים מנירוסטה.</p></article><article class="tech-card"><div class="num">B / LOCK</div><h3>קליק — וזה נעול</h3><p>רגליים שנפתחות בתנועה אחת וננעלות באופן ברור. לחיצה על פין השחרור מקפלת את הספסל.</p></article><article class="tech-card"><div class="num">C / STACK</div><h3>נכנס לערימה</h3><p>הספסלים משתלבים זה בזה בערימה יציבה. פחות נפח במחסן, יותר גמישות באולם.</p></article><article class="tech-card"><div class="num">D / MADE HERE</div><h3>מתוכנן לשטח</h3><p>פיתוח וייצור של מתקפלים, עם חשיבה הנדסית שמתחילה מהשימוש האמיתי של מוסדות.</p></article></div></div></section>
+    <section id="products" class="section"><div class="wrap"><div class="section-head"><div><div class="label">03 / THE SYSTEM</div><h2>מוצר אחד<br><span style="color:var(--steel)">מתוך מערכת.</span></h2></div><p>אותה שפה הנדסית מתרחבת לשולחנות, מיטות ופתרונות נוספים.</p></div><div class="products"><article class="product"><div class="product-art"></div><div><h3>ספקל®</h3><p>ספסל מתקפל. 5.6 ק״ג / 4 ס״מ בקיפול.</p></div><a href="#product">VIEW PRODUCT →</a></article><article class="product"><div class="product-art table"></div><div><h3>קפלוטש</h3><p>שולחן מתקפל למוסדות ולאירועים.</p></div><a href="#contact">REQUEST SPECS →</a></article><article class="product"><div class="product-art bed"></div><div><h3>מיטות</h3><p>פתרון לינה מתקפל למבנים רב־שימושיים.</p></div><a href="#contact">REQUEST SPECS →</a></article></div></div></section>
+    <section id="contact" class="contact"><div class="wrap contact-row"><div><div class="label" style="color:#11150d">NEXT STEP / 04</div><h2>בואו נמדוד<br>את האפשרויות.</h2></div><div><p>שלחו לנו את מידות החלל והכמות הרצויה. נחזור עם פתרון שמתאים לשטח, לשימוש ולמחסן.</p><div class="actions"><a class="button" href="https://wa.me/972500000000">WHATSAPP ↗</a><a class="button" href="tel:+972500000000">050-000-0000</a></div></div></div></section>
+    <section id="planner" class="section"><div class="wrap"><div class="section-head"><div><div class="label">04 / SPACE PLANNER</div><h2>כמה נכנס<br><span style="color:var(--steel)">בחלל שלכם?</span></h2></div><p>מחשבון המחשה לגבאים ולמנהלי אולמות. הנתונים ניתנים להחלפה לאחר קבלת מפרטי המוצר הסופיים.</p></div><div class="planner-grid"><div class="calc-box"><div class="fields"><label>רוחב במטרים<input id="roomW" type="number" min="2" value="4"></label><label>אורך במטרים<input id="roomL" type="number" min="2" value="8"></label></div><div class="mode-row"><button class="mode active" data-mode="comfortable" type="button">נוח</button><button class="mode" data-mode="dense" type="button">צפוף</button></div><div class="result"><div class="result-card"><small>קבוצות</small><strong id="groups">—</strong></div><div class="result-card"><small>מקומות</small><strong id="seats">—</strong></div><div class="result-card"><small>ספסלים באחסון</small><strong id="storage">—</strong></div><div class="result-card"><small>שטח אחסון</small><strong id="storageArea">—</strong></div></div></div><div class="floor" id="floor"></div></div></div></section>
+    <section id="quote" class="section"><div class="wrap"><div class="section-head"><div><div class="label">05 / QUOTE</div><h2>בואו נבנה<br><span style="color:var(--steel)">את הפתרון.</span></h2></div><p>שלחו פרטים וכמות ספסלים משוערת. הפנייה תיפתח ב־WhatsApp.</p></div><form class="quote-form" id="quote-form"><label>שם מלא *<input name="name" required></label><label>טלפון *<input name="phone" type="tel" required></label><label>כמות ספסלים *<input name="benchQuantity" type="number" min="1" required></label><label>סוג פרויקט<select name="project"><option>בית כנסת</option><option>אולם</option><option>מוסד</option><option>רשות / ארגון</option></select></label><label class="full">הערות<textarea name="notes"></textarea></label><div class="full"><button class="button" type="submit">שליחה ב־WhatsApp</button><p class="form-note">הכמות היא שדה חובה.</p><p class="form-status" id="form-status"></p></div></form></div></section>
+    <section id="product-detail" class="section" hidden><div class="wrap"><a href="#products" class="code">← חזרה למוצרים</a><div class="section-head"><div><div class="label" id="detail-code">PRODUCT</div><h2 id="detail-title">ספקל®</h2></div><p id="detail-copy"></p></div><div class="detail-points" id="detail-points"></div><a class="button" href="#quote">בקשו הצעת מחיר</a></div></section>
+    <section id="spekal-gallery" class="section" hidden><div class="wrap"><div class="section-head"><div><div class="label">SPEKAL / PRODUCT GALLERY</div><h2>ספקל®<br><span style="color:var(--steel)">מקרוב.</span></h2></div><p>תמונות מוצר שסופקו על ידי מתקפלים.</p></div><div class="products"><figure class="product"><img src="assets/spekal/spekal-01.png" alt="ספקל פתוח" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>ספקל פתוח</figcaption></figure><figure class="product"><img src="assets/spekal/spekal-02.png" alt="ספקל במבט קדמי" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>מבט קדמי</figcaption></figure><figure class="product"><img src="assets/spekal/spekal-03.png" alt="מנגנון הספקל" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>מנגנון וחיבורי הרגליים</figcaption></figure><figure class="product"><img src="assets/spekal/spekal-04.png" alt="ספקל במבט תחתון" style="width:100%;height:260px;object-fit:contain;background:#000"><figcaption>מבט תחתון</figcaption></figure></div></div></section>
   </main>
-  <footer class="wrap footer"><span>×ž×ª×§×¤×œ×™×Â® / FOLDING SYSTEMS</span><span>×”×“×ž×™×” ×•× ×ª×•× ×™× ×œ×”×ž×—×©×” ×¢×“ ×œ××™×©×•×¨ ×ž×¤×¨×˜ ×¡×•×¤×™</span></footer>
+  <footer class="wrap footer"><span>מתקפלים® / FOLDING SYSTEMS</span><span>הדמיה ונתונים להמחשה עד לאישור מפרט סופי</span></footer>
   <script>
-    document.querySelectorAll('#roomW,#roomL').forEach(input=>{const wrap=document.createElement('div');wrap.className='stepper';input.parentNode.insertBefore(wrap,input);wrap.append(input);for(const delta of [-1,1]){const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',delta>0?'×”×’×“×œ×”':'×”×§×˜× ×”');button.textContent=delta>0?'+':'âˆ’';button.addEventListener('click',()=>{input.value=Math.max(Number(input.min)||2,(Number(input.value)||2)+delta);input.dispatchEvent(new Event('input'))});wrap.insertBefore(button,delta>0?input:null)}});
+    document.querySelectorAll('#roomW,#roomL').forEach(input=>{const wrap=document.createElement('div');wrap.className='stepper';input.parentNode.insertBefore(wrap,input);wrap.append(input);for(const delta of [-1,1]){const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',delta>0?'הגדלה':'הקטנה');button.textContent=delta>0?'+':'−';button.addEventListener('click',()=>{input.value=Math.max(Number(input.min)||2,(Number(input.value)||2)+delta);input.dispatchEvent(new Event('input'))});wrap.insertBefore(button,delta>0?input:null)}});
     const productDetails={
-      spekal:{code:'01 / ×™×©×™×‘×”',title:'×¡×¤×§×œÂ®',copy:'×¡×¤×¡×œ ×ž×ª×§×¤×œ ×§×œ, ×™×¦×™×‘ ×•×—×¡×›×•× ×™ ×‘××—×¡×•×Ÿ. 5.6 ×§×´×’ ×‘×œ×‘×“, ×ž× ×’× ×•×Ÿ × ×¢×™×œ×” ×‘×§×œ×™×§, ××œ×•×ž×™× ×™×•× ×× ×•×“×™×™×–, ×¤×¨×–×•×œ × ×™×¨×•×¡×˜×” ×•×¢×•×‘×™ ×©×œ 4 ×¡×´×ž ×‘×§×™×¤×•×œ.',points:['5.6 ×§×´×’ ×‘×œ×‘×“','× ×¢×™×œ×” ×‘×§×œ×™×§','×™×¦×™×‘×•×ª ×©×œ ×¨×”×™×˜ ×§×‘×•×¢','4 ×¡×´×ž ×‘×§×™×¤×•×œ','× ×§×™ ×ž×—×œ×•×“×”']},
-      table:{code:'02 / ×©×•×œ×—× ×•×ª',title:'×§×¤×œ×•×˜×©',copy:'×©×•×œ×—×Ÿ ×ž×ª×§×¤×œ ×œ×ž×•×¡×“×•×ª ×•×œ××™×¨×•×¢×™×, ×¢× ×¤×ª×™×—×” ×ž×”×™×¨×”, ×™×¦×™×‘×•×ª ×ž×œ××” ×•×¤×™× ×•×™ ×™×¢×™×œ ×©×œ ×”×—×œ×œ.',points:['×¤×ª×™×—×” ×ž×”×™×¨×”','×©×œ×“×” ×™×¦×™×‘×”','×ž×ª×§×¤×œ ×•× ×¢×¨×','× ×¨××•×ª ×ž×›×•×‘×“×ª']},
-      bed:{code:'03 / ×œ×™× ×”',title:'×ž×™×˜×•×ª ×ž×ª×§×¤×œ×•×ª',copy:'×¤×ª×¨×•×Ÿ ×œ×™× ×” ×’×ž×™×© ×œ×ž×•×¡×“×•×ª ×•×œ×ž×‘× ×™× ×¨×‘Ö¾×©×™×ž×•×©×™×™×. × ×ª×•× ×™ ×”×ž×•×¦×¨ ×‘×©×œ×‘ ×–×” ×œ×”×ž×—×©×” ×‘×œ×‘×“.',points:['× ×¤×ª×—×•×ª ×‘×ž×”×™×¨×•×ª','××—×¡×•×Ÿ ×ž×¡×•×“×¨','×©×™×ž×•×© ×—×•×–×¨ ×œ××•×¨×š ×–×ž×Ÿ']}
+      spekal:{code:'01 / ישיבה',title:'ספקל®',copy:'ספסל מתקפל קל, יציב וחסכוני באחסון. 5.6 ק״ג בלבד, מנגנון נעילה בקליק, אלומיניום אנודייז, פרזול נירוסטה ועובי של 4 ס״מ בקיפול.',points:['5.6 ק״ג בלבד','נעילה בקליק','יציבות של רהיט קבוע','4 ס״מ בקיפול','נקי מחלודה']},
+      table:{code:'02 / שולחנות',title:'קפלוטש',copy:'שולחן מתקפל למוסדות ולאירועים, עם פתיחה מהירה, יציבות מלאה ופינוי יעיל של החלל.',points:['פתיחה מהירה','שלדה יציבה','מתקפל ונערם','נראות מכובדת']},
+      bed:{code:'03 / לינה',title:'מיטות מתקפלות',copy:'פתרון לינה גמיש למוסדות ולמבנים רב־שימושיים. נתוני המוצר בשלב זה להמחשה בלבד.',points:['נפתחות במהירות','אחסון מסודר','שימוש חוזר לאורך זמן']}
     };
     function openProduct(key){
       const product=productDetails[key];
       document.querySelector('#detail-code').textContent=product.code;
       document.querySelector('#detail-title').textContent=product.title;
       document.querySelector('#detail-copy').textContent=product.copy;
-      document.querySelector('#detail-points').innerHTML=product.points.map(point=>`<article><strong>${point}</strong><span>×¤×ª×¨×•×Ÿ ×©×ª×•×›× ×Ÿ ×œ×©×™×ž×•×© ×ž×•×¡×“×™ ××ž×™×ª×™.</span></article>`).join('');
+      document.querySelector('#detail-points').innerHTML=product.points.map(point=>`<article><strong>${point}</strong><span>פתרון שתוכנן לשימוש מוסדי אמיתי.</span></article>`).join('');
       document.querySelector('#product-detail').hidden=false;
       document.querySelector('#spekal-gallery').hidden=key!=='spekal';
       document.querySelector('#product-detail').scrollIntoView({behavior:'smooth'});
@@ -56,14 +56,14 @@
       event.preventDefault();
       const data=new FormData(quoteForm),quantity=String(data.get('benchQuantity')||'').trim();
       if(!quantity||Number(quantity)<1)return;
-      const message=['×‘×§×©×ª ×”×¦×¢×ª ×ž×—×™×¨ â€” ×ž×ª×§×¤×œ×™×',`×©×: ${data.get('name')}`,`×˜×œ×¤×•×Ÿ: ${data.get('phone')}`,`×›×ž×•×ª ×¡×¤×¡×œ×™×: ${quantity}`,`×¡×•×’ ×¤×¨×•×™×§×˜: ${data.get('project')}`,`×”×¢×¨×•×ª: ${data.get('notes')||'×œ× × ×ž×¡×¨×•'}`].join('\n');
+      const message=['בקשת הצעת מחיר — מתקפלים',`שם: ${data.get('name')}`,`טלפון: ${data.get('phone')}`,`כמות ספסלים: ${quantity}`,`סוג פרויקט: ${data.get('project')}`,`הערות: ${data.get('notes')||'לא נמסרו'}`].join('\n');
       window.open(`https://wa.me/972500000000?text=${encodeURIComponent(message)}`,'_blank');
-      document.querySelector('#form-status').textContent='×”×¤× ×™×™×” ×ž×•×›× ×” ×œ×©×œ×™×—×” ×‘Ö¾WhatsApp.';
+      document.querySelector('#form-status').textContent='הפנייה מוכנה לשליחה ב־WhatsApp.';
     });
     function runPlanner(){
       const width=Math.max(2,Number(document.querySelector('#roomW')?.value)||4),length=Math.max(2,Number(document.querySelector('#roomL')?.value)||8),dense=document.querySelector('.mode.active')?.dataset.mode==='dense',aisle=dense?.45:.75,tableW=.7,tableL=1.8,benchL=1.8,across=Math.max(1,Math.floor((width+aisle)/(tableW+aisle))),along=Math.max(1,Math.floor((length+aisle)/(tableL+aisle))),groups=across*along,area=Math.max(.1,groups*benchL*.04),floor=document.querySelector('#floor');
       if(!floor)return;
-      document.querySelector('#groups').textContent=groups+' ×§×‘×•×¦×•×ª';document.querySelector('#seats').textContent=groups*4+' ×ž×§×•×ž×•×ª';document.querySelector('#storage').textContent=Math.floor(2/area*groups)+' ×¡×¤×¡×œ×™×';document.querySelector('#storageArea').textContent=area.toFixed(1)+' ×ž×´×¨';floor.innerHTML='';
+      document.querySelector('#groups').textContent=groups+' קבוצות';document.querySelector('#seats').textContent=groups*4+' מקומות';document.querySelector('#storage').textContent=Math.floor(2/area*groups)+' ספסלים';document.querySelector('#storageArea').textContent=area.toFixed(1)+' מ״ר';floor.innerHTML='';
       const scale=Math.min((floor.clientWidth-26)/width,(floor.clientHeight-30)/length),ox=(floor.clientWidth-width*scale)/2,oy=(floor.clientHeight-length*scale)/2+10;
       for(let y=0;y<along;y++)for(let x=0;x<across;x++){const left=ox+x*(tableW+aisle)*scale,top=oy+y*(tableL+aisle)*scale,t=document.createElement('div');t.className='unit table';t.style.cssText=`left:${left}px;top:${top}px;width:${tableW*scale}px;height:${tableL*scale}px`;floor.append(t);for(const side of [-1,1]){const b=document.createElement('div');b.className='unit bench';b.style.cssText=`left:${left}px;top:${top+(side<0?-aisle*.7:tableL+aisle*.2)*scale}px;width:${benchL*scale}px;height:${Math.max(5,aisle*.45*scale)}px`;floor.append(b)}}
     }
@@ -81,13 +81,13 @@
       const aisle=state.mode==='dense'?.45:.75,tableW=.7,tableL=1.8,benchL=1.8;
       const across=Math.max(1,Math.floor((width+aisle)/(tableW+aisle))),along=Math.max(1,Math.floor((length+aisle)/(tableL+aisle))),groups=across*along;
       const foldedArea=Math.max(.1,groups*benchL*.04);
-      $('groups').textContent=groups+' ×§×‘×•×¦×•×ª';$('seats').textContent=groups*4+' ×ž×§×•×ž×•×ª';$('storage').textContent=Math.floor(2/foldedArea*groups)+' ×¡×¤×¡×œ×™×';$('storageArea').textContent=foldedArea.toFixed(1)+' ×ž×´×¨';
+      $('groups').textContent=groups+' קבוצות';$('seats').textContent=groups*4+' מקומות';$('storage').textContent=Math.floor(2/foldedArea*groups)+' ספסלים';$('storageArea').textContent=foldedArea.toFixed(1)+' מ״ר';
       const floor=$('floor');floor.innerHTML='';const scale=Math.min((floor.clientWidth-26)/width,(floor.clientHeight-30)/length),offsetX=(floor.clientWidth-width*scale)/2,offsetY=(floor.clientHeight-length*scale)/2+10;
       for(let y=0;y<along;y++)for(let x=0;x<across;x++){const left=offsetX+x*(tableW+aisle)*scale,top=offsetY+y*(tableL+aisle)*scale,t=document.createElement('div');t.className='unit table';t.style.cssText=`left:${left}px;top:${top}px;width:${tableW*scale}px;height:${tableL*scale}px`;floor.append(t);for(const side of [-1,1]){const b=document.createElement('div');b.className='unit bench';b.style.cssText=`left:${left}px;top:${top+(side<0?-aisle*.7:tableL+aisle*.2)*scale}px;width:${benchL*scale}px;height:${Math.max(5,aisle*.45*scale)}px`;floor.append(b)}}
     }
     document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.mode').forEach(item=>item.classList.remove('active'));button.classList.add('active');state.mode=button.dataset.mode;calculate()}));
     ['roomW','roomL'].forEach(id=>$(id)?.addEventListener('input',calculate));window.addEventListener('resize',calculate);calculate();
-    $('quote-form')?.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.currentTarget),quantity=String(data.get('benchQuantity')||'').trim();if(!quantity||Number(quantity)<1)return;const message=['×‘×§×©×ª ×”×¦×¢×ª ×ž×—×™×¨ â€” ×ž×ª×§×¤×œ×™×',`×©×: ${data.get('name')}`,`×˜×œ×¤×•×Ÿ: ${data.get('phone')}`,`×›×ž×•×ª ×¡×¤×¡×œ×™×: ${quantity}`,`×¡×•×’ ×¤×¨×•×™×§×˜: ${data.get('project')}`,`×”×¢×¨×•×ª: ${data.get('notes')||'×œ× × ×ž×¡×¨×•'}`].join('\n');window.open(`https://wa.me/972500000000?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');$('form-status').textContent='×”×¤× ×™×™×” ×ž×•×›× ×” ×œ×©×œ×™×—×” ×‘Ö¾WhatsApp.'});
+    $('quote-form')?.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.currentTarget),quantity=String(data.get('benchQuantity')||'').trim();if(!quantity||Number(quantity)<1)return;const message=['בקשת הצעת מחיר — מתקפלים',`שם: ${data.get('name')}`,`טלפון: ${data.get('phone')}`,`כמות ספסלים: ${quantity}`,`סוג פרויקט: ${data.get('project')}`,`הערות: ${data.get('notes')||'לא נמסרו'}`].join('\n');window.open(`https://wa.me/972500000000?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');$('form-status').textContent='הפנייה מוכנה לשליחה ב־WhatsApp.'});
     const canvas=document.querySelector('#model'),scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(36,1,.1,100),renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
     camera.position.set(3,2.1,4.4);scene.add(new THREE.HemisphereLight(0xeaffc1,0x14191a,2.2));const key=new THREE.DirectionalLight(0xffffff,3);key.position.set(3,5,4);scene.add(key);
     const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.enableZoom=false;
@@ -101,22 +101,22 @@
     .product-art:after{display:none!important}
     .hero-model{background:url('assets/spekal/supplied-01.jpg') center/cover no-repeat!important}
     .hero-model #model,.hero-model .cross,.hero-model .model-tag{display:none}
-    .hero-model:after{content:'×¡×¤×§×œ â€” ×¤×©×•×˜. ×§×œ.';position:absolute;right:24px;bottom:24px;padding:10px 15px;background:rgba(8,8,8,.76);color:var(--lime);font:700 18px Heebo}
+    .hero-model:after{content:'ספקל — פשוט. קל.';position:absolute;right:24px;bottom:24px;padding:10px 15px;background:rgba(8,8,8,.76);color:var(--lime);font:700 18px Heebo}
   </style>
   <script>
     const productArtwork=['assets/spekal/supplied-02.jpg','assets/spekal/supplied-04.jpg','assets/spekal/supplied-05.jpg'];
-    document.querySelectorAll('.product-art').forEach((art,index)=>{const image=document.createElement('img');image.src=productArtwork[index]||productArtwork[0];image.alt='×ž×•×¦×¨ ×ž×ª×§×¤×œ';art.replaceChildren(image)});
+    document.querySelectorAll('.product-art').forEach((art,index)=>{const image=document.createElement('img');image.src=productArtwork[index]||productArtwork[0];image.alt='מוצר מתקפל';art.replaceChildren(image)});
     document.querySelectorAll('a[href*="972500000000"],a[href*="050-000-0000"]').forEach(link=>{link.href=link.tagName==='A'&&link.href.includes('wa.me')?'https://wa.me/97226206070':'tel:+97226206070';if(link.href.startsWith('tel:'))link.textContent='02-6206070'});
     document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE)node.nodeValue=node.nodeValue.replaceAll('5.6','8.4').replaceAll('050-000-0000','02-6206070').replaceAll('972500000000','97226206070')});
   </script>
   <script>
     const productPages=['products/spekal.html','products/table.html','products/beds.html'];
-    document.querySelectorAll('.product a').forEach((link,index)=>{link.href=productPages[index];link.textContent='×œ×“×£ ×”×ž×•×¦×¨'});
+    document.querySelectorAll('.product a').forEach((link,index)=>{link.href=productPages[index];link.textContent='לדף המוצר'});
   </script>
   <script>
-    document.title='×ž×ª×§×¤×œ×™× | ×›×œ ×”××¤×©×¨×•×™×•×ª â€” ×ž×§×•×¤×œ×•×ª ×œ×¤× ×™×›×!';
+    document.title='מתקפלים | כל האפשרויות — מקופלות לפניכם!';
     const heroTitle=document.querySelector('.hero h1');
-    if(heroTitle){heroTitle.innerHTML='×›×œ ×”××¤×©×¨×•×™×•×ª<span>×ž×§×•×¤×œ×•×ª ×œ×¤× ×™×›×!</span>'}
+    if(heroTitle){heroTitle.innerHTML='כל האפשרויות<span>מקופלות לפניכם!</span>'}
   </script>
   <style>
     .product-art img{width:100%;height:100%;object-fit:cover;display:block}
@@ -134,20 +134,20 @@
   <script>
     const menu=document.querySelector('.menu');
     if(menu){
-      menu.replaceChildren(...[['××•×“×•×ª','#system'],['×ž×•×¦×¨×™×','#products'],['×ž×—×©×‘×•×Ÿ ×’×‘××™×','#planner'],['×¤×¨×•×™×§×˜×™×','#projects'],['×’×œ×¨×™×”','#gallery'],['×¦×•×¨ ×§×©×¨','#contact']].map(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;return link}));
+      menu.replaceChildren(...[['אודות','#system'],['מוצרים','#products'],['מחשבון גבאים','#planner'],['פרויקטים','#projects'],['גלריה','#gallery'],['צור קשר','#contact']].map(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;return link}));
     }
     const plannerTitle=document.querySelector('#planner h2');
-    if(plannerTitle)plannerTitle.innerHTML='×‘×•××• × ×‘× ×” ×™×—×“<br><span style="color:var(--steel)">××ª ×”×¤×ª×¨×•×Ÿ!</span>';
+    if(plannerTitle)plannerTitle.innerHTML='בואו נבנה יחד<br><span style="color:var(--steel)">את הפתרון!</span>';
     const calcBox=document.querySelector('#planner .calc-box');
-    if(calcBox&&!calcBox.querySelector('.planner-caption')){const caption=document.createElement('p');caption.className='planner-caption';caption.textContent='×›×ž×” ×’×•×“×œ ×”×—×œ×œ ×©×œ×›×?';calcBox.prepend(caption)}
+    if(calcBox&&!calcBox.querySelector('.planner-caption')){const caption=document.createElement('p');caption.className='planner-caption';caption.textContent='כמה גודל החלל שלכם?';calcBox.prepend(caption)}
     const quoteTitle=document.querySelector('#quote h2');
-    if(quoteTitle)quoteTitle.innerHTML='×§×‘×œ×• ×©×™×¨×•×ª<br><span style="color:var(--steel)">×•×”×ª××ž×” ××™×©×™×ª</span>';
+    if(quoteTitle)quoteTitle.innerHTML='קבלו שירות<br><span style="color:var(--steel)">והתאמה אישית</span>';
     const main=document.querySelector('main'),productsSection=document.querySelector('#products');
     if(main&&productsSection&&!document.querySelector('#projects')){
       const section=document.createElement('section');section.id='projects';section.className='projects-section';
-      section.innerHTML='<div class="shell"><div class="section-head"><div><div class="label">×¤×¨×•×™×§×˜×™× × ×‘×—×¨×™×</div><h2>×¤×ª×¨×•× ×•×ª<br><span style="color:var(--steel)">×©×›×‘×¨ ×¢×•×‘×“×™×.</span></h2></div><p>×›×š ×”×ž×•×¦×¨×™× ×ž×©×ª×œ×‘×™× ×‘×—×œ×œ×™× ××ž×™×ª×™×™× â€” ×‘×¤×ª×™×—×”, ×‘×©×™×ž×•×© ×•×‘××—×¡×•×Ÿ.</p></div><div class="projects-grid"></div></div>';
+      section.innerHTML='<div class="shell"><div class="section-head"><div><div class="label">פרויקטים נבחרים</div><h2>פתרונות<br><span style="color:var(--steel)">שכבר עובדים.</span></h2></div><p>כך המוצרים משתלבים בחללים אמיתיים — בפתיחה, בשימוש ובאחסון.</p></div><div class="projects-grid"></div></div>';
       const grid=section.querySelector('.projects-grid');
-      [['assets/spekal/supplied-01.jpg','×¡×¤×§×œ ×‘×—×œ×œ ×ž×¢×•×¦×‘','projects/spekal.html'],['assets/spekal/supplied-02.jpg','×¤×ª×¨×•×Ÿ ×™×©×™×‘×” ×œ×ž×•×¡×“×•×ª','projects/seating.html'],['assets/spekal/supplied-05.jpg','× ×¨××•×ª ×©×ž×ª×—×‘×¨×ª ×œ×—×œ×œ','projects/multipurpose.html']].forEach(([src,caption,href])=>{const figure=document.createElement('figure');figure.className='project-card';const image=document.createElement('img');image.src=src;image.alt=caption;const text=document.createElement('figcaption');const title=document.createElement('span');title.textContent=caption;const link=document.createElement('a');link.href=href;link.textContent='×¨××” ×¢×•×“';text.append(title,link);figure.append(image,text);grid.append(figure)});
+      [['assets/spekal/supplied-01.jpg','ספקל בחלל מעוצב','projects/spekal.html'],['assets/spekal/supplied-02.jpg','פתרון ישיבה למוסדות','projects/seating.html'],['assets/spekal/supplied-05.jpg','נראות שמתחברת לחלל','projects/multipurpose.html']].forEach(([src,caption,href])=>{const figure=document.createElement('figure');figure.className='project-card';const image=document.createElement('img');image.src=src;image.alt=caption;const text=document.createElement('figcaption');const title=document.createElement('span');title.textContent=caption;const link=document.createElement('a');link.href=href;link.textContent='ראה עוד';text.append(title,link);figure.append(image,text);grid.append(figure)});
       productsSection.after(section);
     }
   </script>
@@ -161,13 +161,13 @@
   </style>
   <script>
     const headerLogo=document.querySelector('.top .mark,.top .brand');
-    if(headerLogo){headerLogo.innerHTML='×ž×ª×§×¤×œ×™×<sup>Â®</sup>';headerLogo.href='#top'}
+    if(headerLogo){headerLogo.innerHTML='מתקפלים<sup>®</sup>';headerLogo.href='#top'}
   </script>
   <script>
     const discardedExplanations=[
-      '×”×ž×¢×¨×›×ª ×‘× ×•×™×” ×¡×‘×™×‘ ×¤×¢×•×œ×•×ª ×©×—×•×–×¨×•×ª ×‘×›×œ ×ž×•×¡×“: ×¤×ª×™×—×”, ×™×©×™×‘×”, ×¤×™× ×•×™, ×©×˜×™×¤×” ×•××—×¡×•×Ÿ.',
-      '××•×ª×” ×©×¤×” ×”× ×“×¡×™×ª ×ž×ª×¨×—×‘×ª ×œ×©×•×œ×—× ×•×ª, ×ž×™×˜×•×ª ×•×¤×ª×¨×•× ×•×ª × ×•×¡×¤×™×.',
-      '×ž×—×©×‘×•×Ÿ ×”×ž×—×©×” ×œ×’×‘××™× ×•×œ×ž× ×”×œ×™ ××•×œ×ž×•×ª. ×”× ×ª×•× ×™× × ×™×ª× ×™× ×œ×”×—×œ×¤×” ×œ××—×¨ ×§×‘×œ×ª ×ž×¤×¨×˜×™ ×”×ž×•×¦×¨ ×”×¡×•×¤×™×™×.'
+      'המערכת בנויה סביב פעולות שחוזרות בכל מוסד: פתיחה, ישיבה, פינוי, שטיפה ואחסון.',
+      'אותה שפה הנדסית מתרחבת לשולחנות, מיטות ופתרונות נוספים.',
+      'מחשבון המחשה לגבאים ולמנהלי אולמות. הנתונים ניתנים להחלפה לאחר קבלת מפרטי המוצר הסופיים.'
     ];
     document.querySelectorAll('p').forEach(paragraph=>{if(discardedExplanations.some(text=>paragraph.textContent.includes(text)))paragraph.remove()});
   </script>
@@ -180,18 +180,18 @@
       localStorage.setItem('foldingLeads',JSON.stringify(leads));
     },true);
     const englishReplacements=new Map([
-      ['FOLDING SYSTEMS / PRODUCT 01','×¤×ª×¨×•× ×•×ª ×¨×™×”×•×˜ ×ž×ª×§×¤×œ×™×'],
-      ['ENGINEERED FOR REAL LIFE','×ª×›× ×•×Ÿ ×œ×©×™×ž×•×© ××ž×™×ª×™'],
-      ['THE SYSTEM','×”×ž×¢×¨×›×ª'],
-      ['SPACE PLANNER','×ž×—×©×‘×•×Ÿ ×”×ª××ž×” ×œ×—×œ×œ'],
-      ['QUOTE','×‘×§×©×ª ×”×¦×¢×”'],
-      ['PRODUCT PAGES','×“×¤×™ ×ž×•×¦×¨×™×'],
-      ['PRODUCT GALLERY','×’×œ×¨×™×™×ª ×”×ž×•×¦×¨'],
-      ['REQUEST A QUOTE','×‘×§×©×ª ×”×¦×¢×”'],
-      ['VIEW PRODUCT â†’','×œ×“×£ ×”×ž×•×¦×¨'],
-      ['REQUEST SPECS â†’','×œ×“×£ ×”×ž×•×¦×¨'],
-      ['INTERACTIVE MODEL','×”×“×ž×™×™×ª ×ž×•×¦×¨'],
-      ['SYSTEM / 01','×ž×ª×§×¤×œ×™× / 01']
+      ['FOLDING SYSTEMS / PRODUCT 01','פתרונות ריהוט מתקפלים'],
+      ['ENGINEERED FOR REAL LIFE','תכנון לשימוש אמיתי'],
+      ['THE SYSTEM','המערכת'],
+      ['SPACE PLANNER','מחשבון התאמה לחלל'],
+      ['QUOTE','בקשת הצעה'],
+      ['PRODUCT PAGES','דפי מוצרים'],
+      ['PRODUCT GALLERY','גלריית המוצר'],
+      ['REQUEST A QUOTE','בקשת הצעה'],
+      ['VIEW PRODUCT →','לדף המוצר'],
+      ['REQUEST SPECS →','לדף המוצר'],
+      ['INTERACTIVE MODEL','הדמיית מוצר'],
+      ['SYSTEM / 01','מתקפלים / 01']
     ]);
     document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE){for(const [from,to] of englishReplacements)node.nodeValue=node.nodeValue.replaceAll(from,to)}});
   </script>
@@ -212,12 +212,12 @@
   <script>
     const gallery=document.querySelector('#gallery .gallery');
     if(gallery){
-      const slides=[['assets/spekal/supplied-02.jpg','×¡×¤×§×œ â€” ×¡×¤×¡×œ ×ž×ª×§×¤×œ'],['assets/spekal/supplied-05.jpg','×”×©×•×œ×—×Ÿ ×”×ž×ª×§×¤×œ'],['assets/spekal/supplied-04.jpg','×”×ž×™×˜×” ×”×ž×ª×§×¤×œ×ª']];
+      const slides=[['assets/spekal/supplied-02.jpg','ספקל — ספסל מתקפל'],['assets/spekal/supplied-05.jpg','השולחן המתקפל'],['assets/spekal/supplied-04.jpg','המיטה המתקפלת']];
       gallery.className='product-carousel';
       gallery.replaceChildren(...slides.map(([src,title],index)=>{const slide=document.createElement('figure');slide.className='carousel-slide'+(index===0?' active':'');const image=document.createElement('img');image.src=src;image.alt=title;const caption=document.createElement('figcaption');caption.className='carousel-caption';caption.textContent=title;slide.append(image,caption);return slide}));
-      const previous=document.createElement('button');previous.className='carousel-control prev';previous.type='button';previous.setAttribute('aria-label','×”×ª×ž×•× ×” ×”×§×•×“×ž×ª');previous.textContent='â€º';
-      const next=document.createElement('button');next.className='carousel-control next';next.type='button';next.setAttribute('aria-label','×”×ª×ž×•× ×” ×”×‘××”');next.textContent='â€¹';
-      const dots=document.createElement('div');dots.className='carousel-dots';slides.forEach((_,index)=>{const dot=document.createElement('button');dot.className='carousel-dot'+(index===0?' active':'');dot.type='button';dot.setAttribute('aria-label','×”×¦×’×ª ×ž×•×¦×¨ '+(index+1));dots.append(dot)});
+      const previous=document.createElement('button');previous.className='carousel-control prev';previous.type='button';previous.setAttribute('aria-label','התמונה הקודמת');previous.textContent='›';
+      const next=document.createElement('button');next.className='carousel-control next';next.type='button';next.setAttribute('aria-label','התמונה הבאה');next.textContent='‹';
+      const dots=document.createElement('div');dots.className='carousel-dots';slides.forEach((_,index)=>{const dot=document.createElement('button');dot.className='carousel-dot'+(index===0?' active':'');dot.type='button';dot.setAttribute('aria-label','הצגת מוצר '+(index+1));dots.append(dot)});
       gallery.append(previous,next,dots);
       let current=0;
       const show=index=>{current=(index+slides.length)%slides.length;gallery.querySelectorAll('.carousel-slide').forEach((slide,i)=>slide.classList.toggle('active',i===current));gallery.querySelectorAll('.carousel-dot').forEach((dot,i)=>dot.classList.toggle('active',i===current))};
@@ -242,11 +242,11 @@
   <script>
     const heroModel=document.querySelector('.hero-model');
     if(heroModel){
-      const heroProducts=[['assets/spekal/supplied-02.jpg','×¡×¤×§×œ. ×¤×©×•×˜ ×§×œ.'],['assets/spekal/supplied-05.jpg','×”×ž×˜×”. ×œ×™×©×•×Ÿ ×¢×œ ×–×”'],['assets/spekal/supplied-04.jpg','×”×©×•×œ×—×Ÿ. ×™×¦×™×‘ ×›×ž×• ×¨×”×™×˜']];
+      const heroProducts=[['assets/spekal/supplied-02.jpg','ספקל. פשוט קל.'],['assets/spekal/supplied-05.jpg','המטה. לישון על זה'],['assets/spekal/supplied-04.jpg','השולחן. יציב כמו רהיט']];
       const carousel=document.createElement('div');carousel.className='hero-carousel';
       carousel.append(...heroProducts.map(([src,title],index)=>{const slide=document.createElement('div');slide.className='hero-slide'+(index===0?' active':'');const image=document.createElement('img');image.src=src;image.alt=title;slide.append(image);return slide}));
       const title=document.createElement('div');title.className='hero-carousel-title';title.textContent=heroProducts[0][1];
-      const dots=document.createElement('div');dots.className='hero-carousel-dots';heroProducts.forEach((_,index)=>{const dot=document.createElement('button');dot.className='hero-carousel-dot'+(index===0?' active':'');dot.type='button';dot.setAttribute('aria-label','×”×¦×’×ª '+heroProducts[index][1]);dots.append(dot)});
+      const dots=document.createElement('div');dots.className='hero-carousel-dots';heroProducts.forEach((_,index)=>{const dot=document.createElement('button');dot.className='hero-carousel-dot'+(index===0?' active':'');dot.type='button';dot.setAttribute('aria-label','הצגת '+heroProducts[index][1]);dots.append(dot)});
       heroModel.replaceChildren(carousel,title,dots);
       let current=0;
       const showHero=index=>{current=(index+heroProducts.length)%heroProducts.length;carousel.querySelectorAll('.hero-slide').forEach((slide,i)=>slide.classList.toggle('active',i===current));dots.querySelectorAll('button').forEach((dot,i)=>dot.classList.toggle('active',i===current));title.textContent=heroProducts[current][1]};
@@ -255,7 +255,7 @@
     document.querySelectorAll('.product').forEach((card,index)=>card.addEventListener('click',event=>{if(event.target.closest('a'))return;window.location.href=['products/spekal.html','products/table.html','products/beds.html'][index]}));
   </script>
   <script>
-    (()=>{const key='foldingAnalytics',visits=JSON.parse(localStorage.getItem(key)||'[]');visits.push({page:'×“×£ ×”×‘×™×ª',at:new Date().toISOString(),referrer:document.referrer||'×™×©×™×¨×”'});localStorage.setItem(key,JSON.stringify(visits.slice(-1000)))})();
+    (()=>{const key='foldingAnalytics',visits=JSON.parse(localStorage.getItem(key)||'[]');visits.push({page:'דף הבית',at:new Date().toISOString(),referrer:document.referrer||'ישירה'});localStorage.setItem(key,JSON.stringify(visits.slice(-1000)))})();
   </script>
 </body>
 </html>
