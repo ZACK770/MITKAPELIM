@@ -114,12 +114,20 @@
     .projects-section{padding:110px 0;border-bottom:1px solid var(--line)}
     .projects-section .shell{max-width:1240px;margin:auto;padding:0 28px}
     .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .project-card{min-height:340px;margin:0;padding:22px;border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
+    .projects-section h2{font-size:clamp(58px,9vw,112px);line-height:.92;letter-spacing:-.075em}
+    .project-card{min-height:520px;margin:0;padding:22px;border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
     .project-card:hover{border-color:var(--lime);transform:translateY(-4px)}
     .project-card img{width:100%;height:170px;object-fit:cover;display:block;border:1px solid var(--line)}
     .project-card figcaption{display:flex;align-items:end;justify-content:space-between;gap:14px;padding-top:20px;font-weight:700;font-size:18px;letter-spacing:.01em}
     .project-card figcaption a{color:var(--lime);font:12px monospace;white-space:nowrap}
     .planner-caption{margin:0 0 18px;color:var(--dim);font-size:13px}
+    .project-card figcaption{display:block;text-align:right}
+    .project-card figcaption small,.project-card figcaption strong,.project-card figcaption p,.project-card figcaption em,.project-card figcaption a{display:block}
+    .project-card figcaption small{color:var(--lime);font:12px monospace}
+    .project-card figcaption strong{font-size:25px;margin:8px 0}
+    .project-card figcaption p{color:var(--dim);font-size:14px;line-height:1.65;margin:10px 0}
+    .project-card figcaption em{color:var(--dim);font-size:13px;font-style:normal}
+    .project-card figcaption a{color:var(--lime);font:12px monospace;margin-top:14px}
     @media(max-width:800px){.projects-section .shell{padding:0 20px}.projects-grid{grid-template-columns:1fr}.project-card{min-height:320px}}
   </style>
   <script>
@@ -275,6 +283,25 @@
       const go=()=>{window.location.href=anchor.href};
       card.addEventListener('click',event=>{if(event.target.closest('a'))return;go()});
       card.addEventListener('keydown',event=>{if(event.key==='Enter')go()});
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const title=document.querySelector('#projects h2');
+      if(title)title.innerHTML='פתרונות<br><span style="color:var(--steel)">שכבר עובדים.</span>';
+      const projects=[
+        ['assets/projects/project-jerusalem.jpeg','120 ספסלים | ירושלים','היכל התורה המרכזי','המעבר לספקל חסך לנו ימי עבודה שלמים בהיערכות לזמני עומס. הספסלים קלים בצורה בלתי רגילה, נראים יוקרתיים ומשתלבים מושלם כריהוט קבוע, והמחסן נשאר פנוי לחלוטין לצרכים אחרים.','הר׳ יוסף פ. | גבאי ראשי','פרויקט ירושלים','projects/spekal.html'],
+        ['assets/projects/project-bnei-brak.jpeg','85 ספסלים | בני ברק','בית הכנסת הגדול','הקליק של הנעילה נותן לי שקט נפשי מוחלט. מתפללים יושבים בבטיחות מלאה גם בצפיפות של ימים נוראים, ואין שום חשש של קריסת רגליים או נדנוד.','א׳ קליין | מנהל המוסד','פרויקט בני ברק','projects/seating.html'],
+        ['assets/projects/project-modiin.jpeg','200 ספסלים | מודיעין עילית','קומפלקס אולמות ומוסדות','שטיפות הרצפה היו הורסות לנו ספסלי מתכת קודמים בחלודה. הספקל עשוי אלומיניום ונירוסטה, נשאר חדש לחלוטין, מבריק ונקי גם אחרי מאות שטיפות!','מ׳ רוזנברג | גבאי מוסדות','פרויקט מודיעין עילית','projects/multipurpose.html']
+      ];
+      document.querySelectorAll('#projects .project-card').forEach((card,index)=>{
+        const item=projects[index];
+        if(!item)return;
+        const [src,meta,name,quote,author,label,href]=item;
+        card.querySelector('img').src=src;
+        card.querySelector('img').alt=name;
+        card.querySelector('figcaption').innerHTML='<small>'+meta+'</small><strong>'+name+'</strong><p>״'+quote+'״</p><em>'+author+'</em><a href="'+href+'">'+label+' · ראה עוד</a>';
+      });
     });
   </script>
 </body>
