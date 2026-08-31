@@ -107,5 +107,9 @@
     document.querySelectorAll('a[href*="972500000000"],a[href*="050-000-0000"]').forEach(link=>{link.href=link.tagName==='A'&&link.href.includes('wa.me')?'https://wa.me/97226206070':'tel:+97226206070';if(link.href.startsWith('tel:'))link.textContent='02-6206070'});
     document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE)node.nodeValue=node.nodeValue.replaceAll('5.6','8.4').replaceAll('050-000-0000','02-6206070').replaceAll('972500000000','97226206070')});
   </script>
+  <script>
+    const productPages=['products/spekal.html','products/table.html','products/beds.html'];
+    document.querySelectorAll('.product a').forEach((link,index)=>{link.href=productPages[index];link.textContent='לדף המוצר'});
+  </script>
 </body>
 </html>
