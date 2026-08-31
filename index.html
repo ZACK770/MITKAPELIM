@@ -192,5 +192,34 @@
     ]);
     document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE){for(const [from,to] of englishReplacements)node.nodeValue=node.nodeValue.replaceAll(from,to)}});
   </script>
+  <style>
+    .hero h1{font-size:clamp(44px,7vw,92px)!important;line-height:1.02!important;letter-spacing:-.025em!important}
+    .product-carousel{position:relative;min-height:440px;overflow:hidden;background:#0e1011;border:1px solid var(--line)}
+    .carousel-slide{display:none;height:440px;position:relative}
+    .carousel-slide.active{display:block;animation:carousel-in .45s ease}
+    .carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .carousel-caption{position:absolute;right:0;left:0;bottom:0;padding:70px 26px 22px;background:linear-gradient(transparent,rgba(0,0,0,.9));font:800 25px Rubik;color:#fff}
+    .carousel-control{position:absolute;top:50%;z-index:2;width:42px;height:42px;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(8,8,8,.65);color:#fff;font-size:24px;cursor:pointer;transform:translateY(-50%)}
+    .carousel-control.prev{right:18px}.carousel-control.next{left:18px}
+    .carousel-dots{position:absolute;bottom:18px;left:50%;z-index:3;display:flex;gap:7px;transform:translateX(-50%)}
+    .carousel-dot{width:7px;height:7px;border:0;border-radius:50%;background:rgba(255,255,255,.45);padding:0;cursor:pointer}.carousel-dot.active{background:var(--lime);box-shadow:0 0 12px var(--lime)}
+    @keyframes carousel-in{from{opacity:.2;transform:scale(1.02)}to{opacity:1;transform:scale(1)}}
+    @media(max-width:800px){.carousel-slide,.product-carousel{height:330px;min-height:330px}.carousel-caption{font-size:20px}}
+  </style>
+  <script>
+    const gallery=document.querySelector('#gallery .gallery');
+    if(gallery){
+      const slides=[['assets/spekal/supplied-02.jpg','ספקל — ספסל מתקפל'],['assets/spekal/supplied-05.jpg','השולחן המתקפל'],['assets/spekal/supplied-04.jpg','המיטה המתקפלת']];
+      gallery.className='product-carousel';
+      gallery.replaceChildren(...slides.map(([src,title],index)=>{const slide=document.createElement('figure');slide.className='carousel-slide'+(index===0?' active':'');const image=document.createElement('img');image.src=src;image.alt=title;const caption=document.createElement('figcaption');caption.className='carousel-caption';caption.textContent=title;slide.append(image,caption);return slide}));
+      const previous=document.createElement('button');previous.className='carousel-control prev';previous.type='button';previous.setAttribute('aria-label','התמונה הקודמת');previous.textContent='›';
+      const next=document.createElement('button');next.className='carousel-control next';next.type='button';next.setAttribute('aria-label','התמונה הבאה');next.textContent='‹';
+      const dots=document.createElement('div');dots.className='carousel-dots';slides.forEach((_,index)=>{const dot=document.createElement('button');dot.className='carousel-dot'+(index===0?' active':'');dot.type='button';dot.setAttribute('aria-label','הצגת מוצר '+(index+1));dots.append(dot)});
+      gallery.append(previous,next,dots);
+      let current=0;
+      const show=index=>{current=(index+slides.length)%slides.length;gallery.querySelectorAll('.carousel-slide').forEach((slide,i)=>slide.classList.toggle('active',i===current));gallery.querySelectorAll('.carousel-dot').forEach((dot,i)=>dot.classList.toggle('active',i===current))};
+      previous.addEventListener('click',()=>show(current-1));next.addEventListener('click',()=>show(current+1));dots.querySelectorAll('button').forEach((dot,index)=>dot.addEventListener('click',()=>show(index)));setInterval(()=>show(current+1),5500);
+    }
+  </script>
 </body>
 </html>
