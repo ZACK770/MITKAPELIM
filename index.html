@@ -150,7 +150,9 @@
     }
   </script>
   <style>
-    .top .mark,.top .brand{font-size:30px;letter-spacing:-.055em}
+    .top .mark,.top .brand{font-size:30px;letter-spacing:-.055em;display:flex;align-items:center}
+    .top .mark img,.top .brand img{height:58px;width:auto;display:block}
+    @media(max-width:700px){.top .mark img,.top .brand img{height:44px}}
     .top .mark i,.top .brand sup,.brand sup{font-size:7px;vertical-align:super;line-height:0;position:relative;top:-.25em}
     #floor{transform:rotate(90deg);transform-origin:center;outline:1px solid rgba(229,193,88,.08)}
     #floor .unit{border-radius:0!important;box-shadow:none;transform:none}
@@ -159,7 +161,7 @@
   </style>
   <script>
     const headerLogo=document.querySelector('.top .mark,.top .brand');
-    if(headerLogo){headerLogo.innerHTML='מתקפלים<sup>®</sup>';headerLogo.href='#top'}
+    if(headerLogo){headerLogo.innerHTML='<img src="assets/logo.png" alt="מתקפלים — ריהוט אלומיניום חכם">';headerLogo.href='#top'}
   </script>
   <script>
     const discardedExplanations=[
