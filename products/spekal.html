@@ -23,5 +23,19 @@
   <script>
     document.querySelector('#quote-form').addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.currentTarget),message=['&#1489;&#1511;&#1513;&#1514; &#1492;&#1510;&#1506;&#1514; &#1502;&#1495;&#1497;&#1512; — &#1505;&#1508;&#1511;&#1500;',`&#1513;&#1501;: ${data.get('name')}`,`&#1496;&#1500;&#1508;&#1493;&#1503;: ${data.get('phone')}`,`&#1499;&#1502;&#1493;&#1514; &#1505;&#1508;&#1505;&#1500;&#1497;&#1501;: ${data.get('quantity')}`,`&#1502;&#1497;&#1491;&#1493;&#1514;: ${data.get('dimensions')||'—'}`,`&#1492;&#1506;&#1512;&#1493;&#1514;: ${data.get('notes')||'—'}`].join('\n');window.open(`https://wa.me/972500000000?text=${encodeURIComponent(message)}`,'_blank')});
   </script>
+  <style>
+    .visual{border:0!important;padding:0!important;background:transparent!important}
+    .visual img{border-radius:0!important;transform:none!important;object-fit:cover!important}
+    .gallery{grid-template-columns:1.3fr .7fr .9fr;grid-auto-rows:240px}
+    .gallery figure:first-child{grid-row:span 2}
+    .gallery img{height:100%!important;object-fit:cover!important;border:0!important;border-radius:0!important}
+    @media(max-width:760px){.gallery{grid-template-columns:1fr;grid-auto-rows:240px}.gallery figure:first-child{grid-row:auto}}
+  </style>
+  <script>
+    document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE)node.nodeValue=node.nodeValue.replaceAll('5.6','8.4').replaceAll('050-000-0000','02-6206070').replaceAll('972500000000','97226206070')});
+    const galleryImages=['../assets/spekal/supplied-01.jpg','../assets/spekal/supplied-02.jpg','../assets/spekal/supplied-03.jpg','../assets/spekal/supplied-04.jpg','../assets/spekal/supplied-05.jpg'];
+    const gallery=document.querySelector('.gallery');
+    if(gallery){gallery.replaceChildren(...galleryImages.map((src,index)=>{const figure=document.createElement('figure'),image=document.createElement('img'),caption=document.createElement('figcaption');image.src=src;image.alt='ספקל — תמונת מוצר';caption.textContent=['ספקל בחלל מעוצב','מבט קדמי','מתקפלים — פיתוח ישראלי','ספקל מקופל','פרט מוצר'][index];figure.append(image,caption);return figure}))}
+  </script>
 </body>
 </html>

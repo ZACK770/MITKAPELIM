@@ -93,5 +93,19 @@
     function resize(){const box=canvas.getBoundingClientRect();renderer.setSize(box.width,box.height,false);camera.aspect=box.width/box.height;camera.updateProjectionMatrix()}window.addEventListener('resize',resize);resize();
     (function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)})();
   </script>
+  <style>
+    .product-art{border:0!important;background:#111!important}
+    .product-art img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-model{background:url('assets/spekal/supplied-01.jpg') center/cover no-repeat!important}
+    .hero-model #model,.hero-model .cross,.hero-model .model-tag{display:none}
+    .hero-model:after{content:'ספקל — פשוט. קל.';position:absolute;right:24px;bottom:24px;padding:10px 15px;background:rgba(8,8,8,.76);color:var(--lime);font:700 18px Heebo}
+  </style>
+  <script>
+    const productArtwork=['assets/spekal/supplied-02.jpg','assets/spekal/supplied-04.jpg','assets/spekal/supplied-05.jpg'];
+    document.querySelectorAll('.product-art').forEach((art,index)=>{const image=document.createElement('img');image.src=productArtwork[index]||productArtwork[0];image.alt='מוצר מתקפל';art.replaceChildren(image)});
+    document.querySelectorAll('.product a').forEach((link,index)=>{link.href=index===0?'products/spekal.html':'#product-pages';link.textContent=index===0?'לדף ספקל':'לדף המוצר'});
+    document.querySelectorAll('a[href*="972500000000"],a[href*="050-000-0000"]').forEach(link=>{link.href=link.tagName==='A'&&link.href.includes('wa.me')?'https://wa.me/97226206070':'tel:+97226206070';if(link.href.startsWith('tel:'))link.textContent='02-6206070'});
+    document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE)node.nodeValue=node.nodeValue.replaceAll('5.6','8.4').replaceAll('050-000-0000','02-6206070').replaceAll('972500000000','97226206070')});
+  </script>
 </body>
 </html>
