@@ -334,7 +334,7 @@
         const label=input?.closest('label');
         if(!label||!input)return;
         [...label.childNodes].filter(node=>node.nodeType===Node.TEXT_NODE).forEach(node=>{node.textContent=''});
-        label.insertBefore(document.createTextNode(text),input);
+        label.insertBefore(document.createTextNode(text),label.firstElementChild);
       };
       setLabel('roomW','אורך במטרים');
       setLabel('roomL','רוחב במטרים');
