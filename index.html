@@ -116,5 +116,48 @@
     const heroTitle=document.querySelector('.hero h1');
     if(heroTitle){heroTitle.innerHTML='כל האפשרויות —<span>מקופלות לפניכם!</span>'}
   </script>
+  <style>
+    .product-art img{width:100%;height:100%;object-fit:cover;display:block}
+    .projects-section{padding:110px 0;border-bottom:1px solid var(--line)}
+    .projects-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px;align-items:stretch}
+    .project-card{position:relative;min-height:280px;overflow:hidden;background:#111}
+    .project-card:first-child{grid-row:span 2;min-height:578px}
+    .project-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .project-card figcaption{position:absolute;right:0;left:0;bottom:0;padding:34px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.86));font-weight:700}
+    .planner-caption{margin:0 0 18px;color:var(--dim);font-size:13px}
+    @media(max-width:800px){.projects-grid{grid-template-columns:1fr}.project-card:first-child{grid-row:auto;min-height:280px}}
+  </style>
+  <script>
+    const menu=document.querySelector('.menu');
+    if(menu){
+      menu.replaceChildren(...[['אודות','#system'],['מוצרים','#products'],['פרויקטים','#projects'],['גלריה','#gallery'],['צור קשר','#contact']].map(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;return link}));
+    }
+    const plannerTitle=document.querySelector('#planner h2');
+    if(plannerTitle)plannerTitle.innerHTML='בואו נבנה יחד<br><span style="color:var(--steel)">את הפתרון!</span>';
+    const calcBox=document.querySelector('#planner .calc-box');
+    if(calcBox&&!calcBox.querySelector('.planner-caption')){const caption=document.createElement('p');caption.className='planner-caption';caption.textContent='כמה גודל החלל שלכם?';calcBox.prepend(caption)}
+    const quoteTitle=document.querySelector('#quote h2');
+    if(quoteTitle)quoteTitle.innerHTML='קבלו שירות<br><span style="color:var(--steel)">והתאמה אישית</span>';
+    const main=document.querySelector('main'),productsSection=document.querySelector('#products');
+    if(main&&productsSection&&!document.querySelector('#projects')){
+      const section=document.createElement('section');section.id='projects';section.className='projects-section';
+      section.innerHTML='<div class="shell"><div class="section-head"><div><div class="label">פרויקטים נבחרים</div><h2>פתרונות<br><span style="color:var(--steel)">שכבר עובדים.</span></h2></div><p>כך המוצרים משתלבים בחללים אמיתיים — בפתיחה, בשימוש ובאחסון.</p></div><div class="projects-grid"></div></div>';
+      const grid=section.querySelector('.projects-grid');
+      [['assets/spekal/supplied-01.jpg','ספקל בחלל מעוצב'],['assets/spekal/supplied-02.jpg','פתרון ישיבה למוסדות'],['assets/spekal/supplied-05.jpg','נראות שמתחברת לחלל']].forEach(([src,caption])=>{const figure=document.createElement('figure');figure.className='project-card';const image=document.createElement('img');image.src=src;image.alt=caption;const text=document.createElement('figcaption');text.textContent=caption;figure.append(image,text);grid.append(figure)});
+      productsSection.after(section);
+    }
+  </script>
+  <style>
+    .top .mark,.top .brand{font-size:30px;letter-spacing:-.055em}
+    .top .mark i,.top .brand sup,.brand sup{font-size:7px;vertical-align:super;line-height:0;position:relative;top:-.25em}
+    #floor{transform:rotate(90deg);transform-origin:center;outline:1px solid rgba(229,193,88,.08)}
+    #floor .unit{border-radius:999px!important;box-shadow:0 0 0 1px rgba(255,255,255,.14);transform:skewX(-7deg)}
+    #floor .unit.table{border-radius:45% 45% 14% 14%!important}
+    #floor .unit.bench{height:7px!important;background:var(--lime)!important}
+  </style>
+  <script>
+    const headerLogo=document.querySelector('.top .mark,.top .brand');
+    if(headerLogo){headerLogo.innerHTML='מתקפלים<sup>®</sup>';headerLogo.href='#top'}
+  </script>
 </body>
 </html>
