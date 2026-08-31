@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 import io
 import json
 import os
@@ -11,6 +11,7 @@ from pathlib import Path
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 
@@ -18,6 +19,7 @@ DATA_FILE = Path(os.getenv('DATA_FILE', '/data/mitkapelim.json'))
 DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'מתקפלים123')
 MAKE_WEBHOOK_URL = os.getenv('MAKE_WEBHOOK_URL', '')
+SITE_DIR = Path(os.getenv('SITE_DIR', str(Path(__file__).resolve().parents[2])))
 
 app = FastAPI(title='Mitkapelim API')
 app.add_middleware(
@@ -177,3 +179,7 @@ def analytics_csv(password: str | None = None, x_admin_password: str | None = He
     views = read_data().get('views', [])
     rows = [[row['page'], row['created_at'], row['referrer']] for row in views]
     return csv_response('analytics-mitkapelim.csv', ['דף', 'תאריך', 'מקור'], rows)
+
+
+if SITE_DIR.joinpath('index.html').exists():
+    app.mount('/', StaticFiles(directory=str(SITE_DIR), html=True), name='site')
