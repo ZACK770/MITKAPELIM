@@ -21,5 +21,19 @@
     <section id="quote" class="section quote"><div class="shell"><h2>בואו נבנה<br>את הפתרון.</h2><p>ספרו לנו על החלל, הכמות והשימוש — ונציע לכם פתרון שמתאים בדיוק לצרכים שלכם.</p><a class="button" href="https://wa.me/97226206070">דברו איתנו ב־WhatsApp</a><a class="button" href="tel:+97226206070">02-6206070</a></div></section>
   </main>
   <footer class="shell footer">מתקפלים — פיתוח וייצור ישראלי</footer>
+  <style>
+    .site-menu{display:flex;gap:24px;margin-right:auto;margin-left:28px;color:var(--muted);font-size:14px}.site-menu a:hover{color:var(--gold)}@media(max-width:760px){.site-menu{display:none}}
+  </style>
+  <script>
+    const productHeader=document.querySelector('header.nav');
+    if(productHeader&&!productHeader.querySelector('.site-menu')){const nav=document.createElement('nav');nav.className='site-menu';[['אודות','../index.html#system'],['מוצרים','../index.html#products'],['פרויקטים','../index.html#projects'],['גלריה','../index.html#gallery'],['צור קשר','../index.html#contact']].forEach(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;nav.append(link)});productHeader.insertBefore(nav,productHeader.lastElementChild)}
+  </script>
+  <style>
+    .site-menu{display:flex;gap:24px;margin-right:auto;margin-left:28px;color:var(--muted);font-size:14px}.site-menu a:hover{color:var(--gold)}@media(max-width:760px){.site-menu{display:none}}
+  </style>
+  <script>
+    const productHeader=document.querySelector('header.nav');
+    if(productHeader&&!productHeader.querySelector('.site-menu')){const nav=document.createElement('nav');nav.className='site-menu';[['אודות','../index.html#system'],['מוצרים','../index.html#products'],['פרויקטים','../index.html#projects'],['גלריה','../index.html#gallery'],['צור קשר','../index.html#contact']].forEach(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;nav.append(link)});productHeader.insertBefore(nav,productHeader.lastElementChild)}
+  </script>
 </body>
 </html>

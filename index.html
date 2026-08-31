@@ -238,11 +238,12 @@
     .hero-carousel-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer}
     .hero-carousel-dot.active{background:var(--lime);box-shadow:0 0 12px var(--lime)}
     @media(max-width:800px){.hero-carousel-title{right:16px;bottom:16px;font-size:16px}.hero-carousel-dots{left:16px;bottom:21px}}
+    .product{cursor:pointer}
   </style>
   <script>
     const heroModel=document.querySelector('.hero-model');
     if(heroModel){
-      const heroProducts=[['assets/spekal/supplied-02.jpg','ספקל'],['assets/spekal/supplied-05.jpg','שולחן מתקפל'],['assets/spekal/supplied-04.jpg','מיטה מתקפלת']];
+      const heroProducts=[['assets/spekal/supplied-02.jpg','ספקל. פשוט קל.'],['assets/spekal/supplied-05.jpg','המטה. לישון על זה'],['assets/spekal/supplied-04.jpg','השולחן. יציב כמו רהיט']];
       const carousel=document.createElement('div');carousel.className='hero-carousel';
       carousel.append(...heroProducts.map(([src,title],index)=>{const slide=document.createElement('div');slide.className='hero-slide'+(index===0?' active':'');const image=document.createElement('img');image.src=src;image.alt=title;slide.append(image);return slide}));
       const title=document.createElement('div');title.className='hero-carousel-title';title.textContent=heroProducts[0][1];
@@ -252,6 +253,7 @@
       const showHero=index=>{current=(index+heroProducts.length)%heroProducts.length;carousel.querySelectorAll('.hero-slide').forEach((slide,i)=>slide.classList.toggle('active',i===current));dots.querySelectorAll('button').forEach((dot,i)=>dot.classList.toggle('active',i===current));title.textContent=heroProducts[current][1]};
       dots.querySelectorAll('button').forEach((dot,index)=>dot.addEventListener('click',()=>showHero(index)));setInterval(()=>showHero(current+1),5000);
     }
+    document.querySelectorAll('.product').forEach((card,index)=>card.addEventListener('click',event=>{if(event.target.closest('a'))return;window.location.href=['products/spekal.html','products/table.html','products/beds.html'][index]}));
   </script>
 </body>
 </html>
