@@ -96,6 +96,7 @@
   <style>
     .product-art{border:0!important;background:#111!important}
     .product-art img{width:100%;height:100%;object-fit:cover;display:block}
+    .product-art:after{display:none!important}
     .hero-model{background:url('assets/spekal/supplied-01.jpg') center/cover no-repeat!important}
     .hero-model #model,.hero-model .cross,.hero-model .model-tag{display:none}
     .hero-model:after{content:'ספקל — פשוט. קל.';position:absolute;right:24px;bottom:24px;padding:10px 15px;background:rgba(8,8,8,.76);color:var(--lime);font:700 18px Heebo}
@@ -166,6 +167,30 @@
       'מחשבון המחשה לגבאים ולמנהלי אולמות. הנתונים ניתנים להחלפה לאחר קבלת מפרטי המוצר הסופיים.'
     ];
     document.querySelectorAll('p').forEach(paragraph=>{if(discardedExplanations.some(text=>paragraph.textContent.includes(text)))paragraph.remove()});
+  </script>
+  <script>
+    const leadForm=document.querySelector('#quote-form');
+    leadForm?.addEventListener('submit',event=>{
+      const data=new FormData(event.currentTarget);
+      const leads=JSON.parse(localStorage.getItem('foldingLeads')||'[]');
+      leads.push({name:data.get('name'),phone:data.get('phone'),email:'',quantity:data.get('benchQuantity')||data.get('quantity'),project:data.get('project')||'',notes:data.get('notes')||'',createdAt:new Date().toISOString()});
+      localStorage.setItem('foldingLeads',JSON.stringify(leads));
+    },true);
+    const englishReplacements=new Map([
+      ['FOLDING SYSTEMS / PRODUCT 01','פתרונות ריהוט מתקפלים'],
+      ['ENGINEERED FOR REAL LIFE','תכנון לשימוש אמיתי'],
+      ['THE SYSTEM','המערכת'],
+      ['SPACE PLANNER','מחשבון התאמה לחלל'],
+      ['QUOTE','בקשת הצעה'],
+      ['PRODUCT PAGES','דפי מוצרים'],
+      ['PRODUCT GALLERY','גלריית המוצר'],
+      ['REQUEST A QUOTE','בקשת הצעה'],
+      ['VIEW PRODUCT →','לדף המוצר'],
+      ['REQUEST SPECS →','לדף המוצר'],
+      ['INTERACTIVE MODEL','הדמיית מוצר'],
+      ['SYSTEM / 01','מתקפלים / 01']
+    ]);
+    document.querySelectorAll('body *').forEach(element=>{for(const node of element.childNodes)if(node.nodeType===Node.TEXT_NODE){for(const [from,to] of englishReplacements)node.nodeValue=node.nodeValue.replaceAll(from,to)}});
   </script>
 </body>
 </html>

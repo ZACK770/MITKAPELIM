@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ניהול פניות | מתקפלים</title>
+  <style>
+    :root{--bg:#080808;--panel:#141414;--line:#303030;--gold:#e5c158;--text:#f8f6f1}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px Arial,sans-serif}.wrap{max-width:1000px;margin:auto;padding:40px 24px}h1{color:var(--gold)}button,input{font:inherit;padding:10px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--text)}button{background:var(--gold);color:#17130a;font-weight:700;cursor:pointer;margin:6px 0}.hidden{display:none}.error{color:#f18b7b}.table{width:100%;border-collapse:collapse;margin-top:25px}.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:right}
+  </style>
+</head>
+<body>
+  <main class="wrap"><a href="index.html">חזרה לאתר</a><h1>ניהול פניות</h1><section id="login"><p>הזינו סיסמה כדי לצפות בפניות.</p><input id="password" type="password" autocomplete="current-password"><button id="login-button">כניסה</button><p class="error" id="error"></p></section><section id="dashboard" class="hidden"><button id="export">הורדת קובץ Excel</button><button id="clear">מחיקת כל הפניות</button><table class="table"><thead><tr><th>תאריך</th><th>שם</th><th>טלפון</th><th>כמות</th><th>פרויקט</th><th>הערות</th></tr></thead><tbody id="rows"></tbody></table></section></main>
+  <script>
+    const password='מתקפלים123',login=document.querySelector('#login'),dashboard=document.querySelector('#dashboard'),rows=document.querySelector('#rows');
+    function leads(){return JSON.parse(localStorage.getItem('foldingLeads')||'[]')}
+    function render(){rows.replaceChildren(...leads().map(lead=>{const row=document.createElement('tr');[new Date(lead.createdAt).toLocaleString('he-IL'),lead.name,lead.phone,lead.quantity,lead.project,lead.notes].forEach(value=>{const cell=document.createElement('td');cell.textContent=value||'';row.append(cell)});return row}))}
+    document.querySelector('#login-button').addEventListener('click',()=>{if(document.querySelector('#password').value===password){login.classList.add('hidden');dashboard.classList.remove('hidden');render()}else document.querySelector('#error').textContent='הסיסמה אינה נכונה.'});
+    document.querySelector('#export').addEventListener('click',()=>{const header=['תאריך','שם','טלפון','כמות','פרויקט','הערות'],data=leads().map(lead=>[lead.createdAt,lead.name,lead.phone,lead.quantity,lead.project,lead.notes]),csv=[header,...data].map(row=>row.map(value=>`"${String(value||'').replaceAll('"','""')}"`).join(',')).join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='פניות-מתקפלים.csv';link.click();URL.revokeObjectURL(link.href)});
+    document.querySelector('#clear').addEventListener('click',()=>{if(confirm('למחוק את כל הפניות?')){localStorage.removeItem('foldingLeads');render()}});
+  </script>
+</body>
+</html>
