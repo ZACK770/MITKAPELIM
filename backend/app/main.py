@@ -11,7 +11,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 
-DATA_DIR = Path(os.getenv("DATA_DIR", "/data"))
+DATA_DIR = Path(os.getenv("DATA_DIR", "data"))
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 DATABASE = DATA_DIR / "mitkapelim.sqlite3"
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "מתקפלים123")
