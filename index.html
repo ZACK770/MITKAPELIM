@@ -1,3 +1,4 @@
+<script>document.addEventListener('DOMContentLoaded',()=>{const menu=document.querySelector('.menu');if(menu&&!menu.querySelector('a[href="#planner"]')){const link=document.createElement('a');link.href='#planner';link.textContent='מחשבון גבאים';menu.insertBefore(link,menu.firstElementChild)}})</script>
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -135,7 +136,7 @@
   <script>
     const menu=document.querySelector('.menu');
     if(menu){
-      menu.replaceChildren(...[['אודות','#system'],['מוצרים','#products'],['פרויקטים','#projects'],['גלריה','#gallery'],['צור קשר','#contact']].map(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;return link}));
+      menu.replaceChildren(...[['אודות','#system'],['מוצרים','#products'],['מחשבון גבאים','#planner'],['פרויקטים','#projects'],['גלריה','#gallery'],['צור קשר','#contact']].map(([label,href])=>{const link=document.createElement('a');link.href=href;link.textContent=label;return link}));
     }
     const plannerTitle=document.querySelector('#planner h2');
     if(plannerTitle)plannerTitle.innerHTML='בואו נבנה יחד<br><span style="color:var(--steel)">את הפתרון!</span>';
