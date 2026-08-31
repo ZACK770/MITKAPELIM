@@ -62,8 +62,8 @@
       const width=Math.max(2,Number(document.querySelector('#roomW')?.value)||4),length=Math.max(2,Number(document.querySelector('#roomL')?.value)||8),dense=document.querySelector('.mode.active')?.dataset.mode==='dense',aisle=dense?.45:.75,tableW=.7,tableL=1.8,benchL=1.8,across=Math.max(1,Math.floor((width+aisle)/(tableW+aisle))),along=Math.max(1,Math.floor((length+aisle)/(tableL+aisle))),groups=across*along,area=Math.max(.1,groups*benchL*.04),floor=document.querySelector('#floor');
       if(!floor)return;
       document.querySelector('#groups').textContent=groups+' קבוצות';document.querySelector('#seats').textContent=groups*4+' מקומות';document.querySelector('#storage').textContent=Math.floor(2/area*groups)+' ספסלים';document.querySelector('#storageArea').textContent=area.toFixed(1)+' מ״ר';floor.innerHTML='';
-      const scale=Math.min((floor.clientWidth-26)/width,(floor.clientHeight-30)/length),ox=(floor.clientWidth-width*scale)/2,oy=(floor.clientHeight-length*scale)/2+10;
-      for(let y=0;y<along;y++)for(let x=0;x<across;x++){const left=ox+x*(tableW+aisle)*scale,top=oy+y*(tableL+aisle)*scale,t=document.createElement('div');t.className='unit table';t.style.cssText=`left:${left}px;top:${top}px;width:${tableW*scale}px;height:${tableL*scale}px`;floor.append(t);for(const side of [-1,1]){const b=document.createElement('div');b.className='unit bench';b.style.cssText=`left:${left}px;top:${top+(side<0?-aisle*.7:tableL+aisle*.2)*scale}px;width:${benchL*scale}px;height:${Math.max(5,aisle*.45*scale)}px`;floor.append(b)}}
+      const scale=Math.min((floor.clientWidth-26)/length,(floor.clientHeight-30)/width),ox=(floor.clientWidth-length*scale)/2,oy=(floor.clientHeight-width*scale)/2+10;
+      for(let y=0;y<along;y++)for(let x=0;x<across;x++){const left=ox+x*(tableL+aisle)*scale,top=oy+y*(tableW+aisle)*scale,t=document.createElement('div');t.className='unit table';t.style.cssText=`left:${left}px;top:${top}px;width:${tableL*scale}px;height:${tableW*scale}px`;floor.append(t);for(const side of [-1,1]){const b=document.createElement('div');b.className='unit bench';b.style.cssText=`left:${left}px;top:${top+(side<0?-aisle*.7:tableW+aisle*.2)*scale}px;width:${benchL*scale}px;height:${Math.max(5,aisle*.45*scale)}px`;floor.append(b)}}
     }
     document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.mode').forEach(item=>item.classList.remove('active'));button.classList.add('active');runPlanner()}));
     ['roomW','roomL'].forEach(id=>document.querySelector(`#${id}`)?.addEventListener('input',runPlanner));window.addEventListener('resize',runPlanner);runPlanner();
@@ -80,8 +80,8 @@
       const across=Math.max(1,Math.floor((width+aisle)/(tableW+aisle))),along=Math.max(1,Math.floor((length+aisle)/(tableL+aisle))),groups=across*along;
       const foldedArea=Math.max(.1,groups*benchL*.04);
       $('groups').textContent=groups+' קבוצות';$('seats').textContent=groups*4+' מקומות';$('storage').textContent=Math.floor(2/foldedArea*groups)+' ספסלים';$('storageArea').textContent=foldedArea.toFixed(1)+' מ״ר';
-      const floor=$('floor');floor.innerHTML='';const scale=Math.min((floor.clientWidth-26)/width,(floor.clientHeight-30)/length),offsetX=(floor.clientWidth-width*scale)/2,offsetY=(floor.clientHeight-length*scale)/2+10;
-      for(let y=0;y<along;y++)for(let x=0;x<across;x++){const left=offsetX+x*(tableW+aisle)*scale,top=offsetY+y*(tableL+aisle)*scale,t=document.createElement('div');t.className='unit table';t.style.cssText=`left:${left}px;top:${top}px;width:${tableW*scale}px;height:${tableL*scale}px`;floor.append(t);for(const side of [-1,1]){const b=document.createElement('div');b.className='unit bench';b.style.cssText=`left:${left}px;top:${top+(side<0?-aisle*.7:tableL+aisle*.2)*scale}px;width:${benchL*scale}px;height:${Math.max(5,aisle*.45*scale)}px`;floor.append(b)}}
+      const floor=$('floor');floor.innerHTML='';const scale=Math.min((floor.clientWidth-26)/length,(floor.clientHeight-30)/width),offsetX=(floor.clientWidth-length*scale)/2,offsetY=(floor.clientHeight-width*scale)/2+10;
+      for(let y=0;y<along;y++)for(let x=0;x<across;x++){const left=offsetX+x*(tableL+aisle)*scale,top=offsetY+y*(tableW+aisle)*scale,t=document.createElement('div');t.className='unit table';t.style.cssText=`left:${left}px;top:${top}px;width:${tableL*scale}px;height:${tableW*scale}px`;floor.append(t);for(const side of [-1,1]){const b=document.createElement('div');b.className='unit bench';b.style.cssText=`left:${left}px;top:${top+(side<0?-aisle*.7:tableW+aisle*.2)*scale}px;width:${benchL*scale}px;height:${Math.max(5,aisle*.45*scale)}px`;floor.append(b)}}
     }
     document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.mode').forEach(item=>item.classList.remove('active'));button.classList.add('active');state.mode=button.dataset.mode;calculate()}));
     ['roomW','roomL'].forEach(id=>$(id)?.addEventListener('input',calculate));window.addEventListener('resize',calculate);calculate();
@@ -120,13 +120,17 @@
   <style>
     .product-art img{width:100%;height:100%;object-fit:cover;display:block}
     .projects-section{padding:110px 0;border-bottom:1px solid var(--line)}
-    .projects-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px;align-items:stretch}
-    .project-card{position:relative;min-height:280px;overflow:hidden;background:#111}
-    .project-card:first-child{grid-row:span 2;min-height:578px}
+    .projects-section .shell{max-width:1240px;margin:auto;padding:0 28px}
+    .projects-grid{display:grid;grid-template-columns:1.35fr .8fr .8fr;grid-template-rows:260px 260px;gap:18px;align-items:stretch}
+    .project-card{position:relative;min-height:0;overflow:hidden;background:#111;isolation:isolate;clip-path:polygon(0 3%,97% 0,100% 96%,3% 100%);transition:transform .3s ease,filter .3s ease}
+    .project-card:first-child{grid-row:span 2;min-height:538px;clip-path:polygon(0 0,98% 3%,100% 97%,2% 100%)}
+    .project-card:nth-child(2){transform:translateY(12px) rotate(.7deg)}
+    .project-card:nth-child(3){transform:translateY(-8px) rotate(-.7deg)}
+    .project-card:hover{z-index:2;transform:translateY(-4px) rotate(0);filter:saturate(1.15)}
     .project-card img{width:100%;height:100%;object-fit:cover;display:block}
-    .project-card figcaption{position:absolute;right:0;left:0;bottom:0;padding:34px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.86));font-weight:700}
+    .project-card figcaption{position:absolute;right:0;left:0;bottom:0;padding:54px 20px 18px;background:linear-gradient(transparent,rgba(0,0,0,.9));font-weight:700;font-size:18px;letter-spacing:.01em}
     .planner-caption{margin:0 0 18px;color:var(--dim);font-size:13px}
-    @media(max-width:800px){.projects-grid{grid-template-columns:1fr}.project-card:first-child{grid-row:auto;min-height:280px}}
+    @media(max-width:800px){.projects-section .shell{padding:0 20px}.projects-grid{grid-template-columns:1fr;grid-template-rows:repeat(3,280px)}.project-card:first-child{grid-row:auto;min-height:280px}.project-card:nth-child(2),.project-card:nth-child(3){transform:none}}
   </style>
   <script>
     const menu=document.querySelector('.menu');
