@@ -111,5 +111,10 @@
     const productPages=['products/spekal.html','products/table.html','products/beds.html'];
     document.querySelectorAll('.product a').forEach((link,index)=>{link.href=productPages[index];link.textContent='לדף המוצר'});
   </script>
+  <script>
+    document.title='מתקפלים | כל האפשרויות — מקופלות לפניכם!';
+    const heroTitle=document.querySelector('.hero h1');
+    if(heroTitle){heroTitle.innerHTML='כל האפשרויות —<span>מקופלות לפניכם!</span>'}
+  </script>
 </body>
 </html>
