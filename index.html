@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KDPN6ZZL');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ספקל® / מתקפלים — Industrial Minimal</title>
@@ -20,6 +23,9 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"מתקפלים","telephone":"+972-2-620-6070","url":"https://www.mitkaplim.co.il/","description":"ספסלים, שולחנות ומיטות מתקפלים לבתי כנסת, אולמות ומוסדות."}</script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDPN6ZZL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <header class="top"><div class="wrap"><a class="mark" href="#top">מתקפלים<i>®</i></a><nav class="menu"><a href="#product">המוצר</a><a href="#system">המערכת</a><a href="#products">מוצרים</a></nav><span class="code">SYSTEM / <b>01</b></span></div></header>
   <main id="top">
     <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="label">FOLDING SYSTEMS / PRODUCT 01</div><h1>ספקל<span>פשוט. קל.</span></h1><p class="lead">ספסל מתקפל למוסדות, בתי כנסת ואולמות. הנדסת אלומיניום מדויקת שמאפשרת להקים, לפנות ולאחסן — בלי לבזבז כוח ושטח.</p><div class="actions"><a class="button" href="#product">לנתוני המוצר</a><a class="button alt" href="#contact">דברו איתנו</a></div></div><div class="hero-model"><div class="model-tag"><strong>INTERACTIVE MODEL</strong>גררו לסיבוב / ללא זום</div><div class="cross"></div><canvas id="model"></canvas></div></div></section>
@@ -280,21 +286,22 @@
     #planner .calc-box{padding:20px}
     #planner .fields{grid-template-columns:1fr}
     #planner .mode-row{margin:14px 0}
-    #planner .result{grid-template-columns:1.35fr 1.35fr .85fr .85fr;gap:6px;margin-top:12px}
-    #planner .result-card{padding:9px;min-width:0}
-    #planner .result-card small{font-size:11px;white-space:nowrap}
-    #planner .result-card strong{font-size:18px;white-space:nowrap}
-    #planner .result-card:has(#groups) strong,#planner .result-card:has(#seats) strong{font-size:clamp(28px,4vw,52px)}
+    #planner .result{grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    #planner .result-card{padding:12px 13px;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;gap:6px}
+    #planner .result-card small{font-size:11px;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
+    #planner .result-card strong{margin-top:0;font-size:20px;line-height:1.25;white-space:normal;overflow-wrap:anywhere}
+    #planner .result-card:has(#groups) strong,#planner .result-card:has(#seats) strong{font-size:clamp(24px,2.4vw,34px)}
     #planner .result-card:has(#storage),#planner .result-card:has(#storageArea){opacity:.78}
+    #planner .result-card:has(#storage) strong,#planner .result-card:has(#storageArea) strong{font-size:17px}
     #planner #groups,#planner #storageArea{display:block}
     #planner #floor{min-width:0}
     @media(max-width:800px){
       #planner .planner-grid{grid-template-columns:1fr}
       #planner .fields{grid-template-columns:1fr 1fr}
-      #planner .result{grid-template-columns:1.2fr 1.2fr 1fr 1fr}
+      #planner .result{grid-template-columns:1fr 1fr}
     }
     @media(max-width:520px){
-      #planner .fields,#planner .result{grid-template-columns:1fr 1fr}
+      #planner .fields,#planner .result{grid-template-columns:1fr}
     }
   </style>
   <script>
@@ -342,5 +349,62 @@
       document.querySelector('#storageArea')?.closest('.result-card')?.style.removeProperty('display');
     });
   </script>
+  <style id="footer-sitemap-style">
+    #server-submit{padding:18px 46px;font-size:19px;border-radius:6px;letter-spacing:.01em}
+    @media(max-width:520px){#server-submit{width:100%;text-align:center}}
+    .site-map{border-top:1px solid var(--line);padding:70px 0 46px}
+    .site-map .wrap{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:38px}
+    .site-map h3{font:800 15px Rubik;letter-spacing:.02em;margin:0 0 18px;color:var(--ink)}
+    .site-map .brand-note{color:var(--dim);font-size:14px;max-width:280px;margin:0}
+    .site-map ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+    .site-map a{color:var(--dim);font-size:14px}
+    .site-map a:hover{color:var(--lime)}
+    .credit-row{border-top:1px solid var(--line);padding:22px 0 30px}
+    .credit-row .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+    .credit-row .rights{color:#646b6a;font:11px monospace;letter-spacing:.06em}
+    .credit-signature{display:inline-flex;align-items:center;gap:12px;font:12px monospace;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
+    .credit-signature span.line{width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--lime))}
+    .credit-signature strong{font:800 13px Rubik;letter-spacing:.16em;color:var(--lime)}
+    @media(max-width:800px){.site-map .wrap{grid-template-columns:1fr 1fr}.credit-row .wrap{flex-direction:column;align-items:flex-start}}
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const footer=document.querySelector('footer.footer');
+      if(!footer||document.querySelector('.site-map'))return;
+      const groups=[
+        ['ניווט באתר',[['המערכת','#system'],['מוצרים','#products'],['מחשבון גבאים','#planner'],['פרויקטים','#projects'],['בקשת הצעה','#quote']]],
+        ['דפי מוצר',[['ספקל®','products/spekal.html'],['קפלוטש','products/table.html'],['מיטות מתקפלות','products/beds.html']]],
+        ['פרויקטים',[['פרויקט ירושלים','projects/spekal.html'],['פרויקט בני ברק','projects/seating.html'],['פרויקט מודיעין עילית','projects/multipurpose.html'],['מפת אתר XML','sitemap.xml']]]
+      ];
+      const map=document.createElement('section');
+      map.className='site-map';
+      const wrap=document.createElement('div');
+      wrap.className='wrap';
+      const intro=document.createElement('div');
+      intro.innerHTML='<h3>מתקפלים®</h3><p class="brand-note">ריהוט אלומיניום מתקפל למוסדות, בתי כנסת ואולמות — הקמה מהירה, פינוי נוח ואחסון חכם.</p>';
+      wrap.append(intro);
+      groups.forEach(([title,links])=>{
+        const column=document.createElement('div');
+        const heading=document.createElement('h3');
+        heading.textContent=title;
+        const list=document.createElement('ul');
+        links.forEach(([label,href])=>{
+          const item=document.createElement('li');
+          const link=document.createElement('a');
+          link.href=href;link.textContent=label;
+          item.append(link);list.append(item);
+        });
+        column.append(heading,list);
+        wrap.append(column);
+      });
+      map.append(wrap);
+      const credit=document.createElement('section');
+      credit.className='credit-row';
+      credit.innerHTML='<div class="wrap"><span class="rights">© מתקפלים® / FOLDING SYSTEMS</span><span class="credit-signature">אפיון · עיצוב · אסטרטגיה<span class="line"></span><strong>אימפולס</strong></span></div>';
+      footer.before(map);
+      footer.after(credit);
+    });
+  </script>
+  <script src="assets/gtm-events.js" defer></script>
 </body>
 </html>
