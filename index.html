@@ -88,12 +88,15 @@
     }
     document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.mode').forEach(item=>item.classList.remove('active'));button.classList.add('active');state.mode=button.dataset.mode;calculate()}));
     ['roomW','roomL'].forEach(id=>$(id)?.addEventListener('input',calculate));window.addEventListener('resize',calculate);calculate();
-    const canvas=document.querySelector('#model'),scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(36,1,.1,100),renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    const canvas=document.querySelector('#model');
+    if(canvas&&getComputedStyle(canvas).display!=='none'){
+    const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(36,1,.1,100),renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
     camera.position.set(3,2.1,4.4);scene.add(new THREE.HemisphereLight(0xeaffc1,0x14191a,2.2));const key=new THREE.DirectionalLight(0xffffff,3);key.position.set(3,5,4);scene.add(key);
     const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.enableZoom=false;
     new GLTFLoader().load('https://www.kinyanhoraah.co.il/wp-content/uploads/2026/08/name-new-v1.glb',gltf=>{const model=gltf.scene;const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());model.position.sub(center);model.scale.setScalar(2.8/size.length());scene.add(model)},undefined,()=>{canvas.parentElement.classList.add('unavailable')});
     function resize(){const box=canvas.getBoundingClientRect();renderer.setSize(box.width,box.height,false);camera.aspect=box.width/box.height;camera.updateProjectionMatrix()}window.addEventListener('resize',resize);resize();
     (function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)})();
+    }
   </script>
   <style>
     .product-art{border:0!important;background:#111!important}
