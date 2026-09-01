@@ -7,7 +7,7 @@ for (const file of files) {
   if (!fs.existsSync(file)) continue;
   const html = fs.readFileSync(file, 'utf8');
   for (const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/gi)) {
-    if (/type=["'](module|application\/ld\+json)/i.test(match[1])) continue;
+    if (/type=["'](module|importmap|application\/ld\+json)/i.test(match[1])) continue;
     if (!match[2].trim()) continue;
     new vm.Script(match[2], { filename: file });
   }
