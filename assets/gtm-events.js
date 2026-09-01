@@ -1,7 +1,18 @@
 (function () {
+  var GA4_ID = 'G-KP8LY60TCH';
   window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  if (!document.querySelector('script[src*="gtag/js"]')) {
+    var loader = document.createElement('script');
+    loader.async = true;
+    loader.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    document.head.appendChild(loader);
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID);
+  }
   var push = function (event, payload) {
     window.dataLayer.push(Object.assign({ event: event }, payload || {}));
+    window.gtag('event', event, payload || {});
   };
   var pageName = document.title || location.pathname;
 
